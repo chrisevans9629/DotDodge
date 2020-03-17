@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float Speed;
-
+    public ParticleSystem ParticleSystem;
+    [HideInInspector]
     public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
+            ParticleSystem.Play();
             rb.isKinematic = false;
             //Destroy(this.gameObject);
         }
