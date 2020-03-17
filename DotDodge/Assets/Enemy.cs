@@ -6,17 +6,19 @@ public class Enemy : MonoBehaviour
 {
     public float Speed;
 
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
-            Destroy(this.gameObject);
+            rb.isKinematic = false;
+            //Destroy(this.gameObject);
         }
     }
 
