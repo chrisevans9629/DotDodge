@@ -945,6 +945,9 @@ MonoBehaviour:
   MaxSpeed: 6
   EnemyPrefab: {fileID: 3263591600573260405, guid: 54ad85f0eeb21ba4e8239abb5aa63357,
     type: 3}
+  DifficultyEveryScore: 1000
+  DifficultyIncrement: 1
+  Player: {fileID: 2118938070}
 --- !u!4 &1823230911
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,5 +1091,5 @@ MonoBehaviour:
   Jump: 500
   rb: {fileID: 2118938069}
   FirePosition: {fileID: 1574735975}
-  FireRateSeconds: 0.5
+  FireRateSeconds: 1
   Bullet: {fileID: 9177294919599725071, guid: 5fa35681d19e7a8499daa93bfbb34e80, type: 3}
