@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 3.0999756, y: -165}
+  m_AnchoredPosition: {x: 3.0998535, y: -165}
   m_SizeDelta: {x: -1533.5, y: 131.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480506432
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e188ee899633d0b49870a5ae38b7359d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ratio: {x: 16, y: 9}
+  ratio: {x: 16, y: 7.85}
   forceRatioOnAwake: 1
   listenForWindowChanges: 1
   createCameraForLetterBoxRendering: 1
@@ -1557,7 +1557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 1.5499878, y: 170.1}
+  m_AnchoredPosition: {x: 1.5500488, y: 170.1}
   m_SizeDelta: {x: -1530.4, y: 134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001229920
