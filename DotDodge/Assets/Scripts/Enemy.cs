@@ -6,12 +6,13 @@ public class Enemy : MonoBehaviour
 {
     public float Speed;
     public ParticleSystem ParticleSystem;
-    [HideInInspector]
-    public Rigidbody rb;
+    private Rigidbody rb;
+    private Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +20,12 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             ParticleSystem.Play();
-            rb.isKinematic = false;
+            if (rb != null)
+                rb.isKinematic = false;
+            if (rb2d != null)
+            {
+                rb2d.isKinematic = false;
+            }
             //Destroy(this.gameObject);
         }
     }
