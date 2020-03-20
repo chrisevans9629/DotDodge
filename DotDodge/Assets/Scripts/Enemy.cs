@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
         if (rb2d != null)
         {
             rb2d.bodyType = RigidbodyType2D.Dynamic;
+            rb2d.angularVelocity = 90;
         }
     }
 
