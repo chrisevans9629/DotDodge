@@ -19,17 +19,29 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            ParticleSystem.Play();
-            if (rb != null)
-                rb.isKinematic = false;
-            if (rb2d != null)
-            {
-                rb2d.isKinematic = false;
-            }
+            Impact();
             //Destroy(this.gameObject);
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            Impact();
+        }
+    }
+
+    private void Impact()
+    {
+        ParticleSystem.Play();
+        if (rb != null)
+            rb.isKinematic = false;
+        if (rb2d != null)
+        {
+            rb2d.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
 
 
     // Update is called once per frame

@@ -48,6 +48,15 @@ public abstract class PlayerBase : MonoBehaviour
         input.Dispose();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Bullet"))
+        {
+            PlayerDied.Invoke();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Bullet"))
