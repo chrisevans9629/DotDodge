@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     public GameObject EnemyPrefab;
     public float DifficultyEveryScore = 5000;
     public float DifficultyIncrement = 1;
-    public Player Player;
+    public PlayerBase Player;
     // Start is called before the first frame update
     void Start()
     {
