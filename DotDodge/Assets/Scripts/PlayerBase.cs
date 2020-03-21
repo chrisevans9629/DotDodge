@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 
 public abstract class PlayerBase : MonoBehaviour
 {
+    public string[] IgnoreTags;
     public float Score;
     public Text text;
     public float Jump;
@@ -50,6 +52,8 @@ public abstract class PlayerBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(IgnoreTags != null && IgnoreTags.Contains(other.tag))
+            return;
         if (!other.CompareTag("Bullet"))
         {
             PlayerDied.Invoke();
