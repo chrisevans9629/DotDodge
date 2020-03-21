@@ -20,6 +20,7 @@ public class KillWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Trigger 2d hit", this);
         if (IgnoreTags != null && IgnoreTags.Contains(collision.tag))
         {
             return;
