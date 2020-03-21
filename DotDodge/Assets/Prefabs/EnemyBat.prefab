@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2.35
   ParticleSystem: {fileID: 7638574303505006068}
+  rb2d: {fileID: 7354386859043565803}
 --- !u!212 &2382386132442900702
 SpriteRenderer:
   m_ObjectHideFlags: 0

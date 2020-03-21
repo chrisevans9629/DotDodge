@@ -7,12 +7,11 @@ public class Enemy : MonoBehaviour
     public float Speed;
     public ParticleSystem ParticleSystem;
     private Rigidbody rb;
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter(Collider other)
