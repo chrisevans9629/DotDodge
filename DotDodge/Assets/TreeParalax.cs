@@ -22,7 +22,7 @@ public class TreeParalax : SpawnerBase
         var speed = result.GetComponent<ISpeed>();
         result.transform.localScale = Vector3.one * Random.Range(MinSize,MaxSize);
 
-        speed.SpeedValue = transform.transform.localScale.x * SpeedScaleRatio;
+        speed.SpeedValue = result.transform.localScale.x * SpeedScaleRatio;
 
         return result;
     }

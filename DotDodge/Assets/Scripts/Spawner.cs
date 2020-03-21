@@ -15,7 +15,10 @@ public class Spawner : SpawnerBase
         StartCoroutine(Spawn(EnemyPrefab));
     }
 
-    
-
-    
+    protected override GameObject SpawnObject(GameObject prefab)
+    {
+        var result = base.SpawnObject(prefab);
+        result.transform.rotation = Quaternion.AngleAxis(15, Vector3.forward);
+        return result;
+    }
 }
