@@ -24,6 +24,9 @@ public class RestartGame : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        
+        //Debug.Log("Reloaded!!");
     }
     // Update is called once per frame
     void Update()

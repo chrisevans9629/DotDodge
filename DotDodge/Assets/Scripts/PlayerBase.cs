@@ -15,7 +15,7 @@ public abstract class PlayerBase : MonoBehaviour
     public float FireRateSeconds;
     public UnityEvent PlayerDied;
     public GameObject Bullet;
-
+    public bool GameIsRunning = true;
     private PlayerInputActions input;
     // Start is called before the first frame update
     public void Awake()
@@ -52,12 +52,30 @@ public abstract class PlayerBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(IgnoreTags != null && IgnoreTags.Contains(other.tag))
+        if (IgnoreTags != null && IgnoreTags.Contains(other.tag))
             return;
         if (!other.CompareTag("Bullet"))
         {
+            UpdateHighscore();
             PlayerDied.Invoke();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    private void UpdateHighscore()
+    {
+        var scoreKey = "score";
+        if (PlayerPrefs.HasKey(scoreKey))
+        {
+            var score = PlayerPrefs.GetFloat(scoreKey);
+            if (Score > score)
+            {
+                PlayerPrefs.SetFloat(scoreKey, Score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(scoreKey, Score);
         }
     }
 
@@ -75,7 +93,8 @@ public abstract class PlayerBase : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(FireRateSeconds);
-            Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
+            if (GameIsRunning)
+                Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
         }
     }
     // Update is called once per frame
@@ -85,7 +104,7 @@ public abstract class PlayerBase : MonoBehaviour
         //{
         //}
 
-        if (Time.timeScale > 0)
+        if (Time.timeScale > 0 && GameIsRunning)
         {
             Score++;
             text.text = "Score: " + Score;
