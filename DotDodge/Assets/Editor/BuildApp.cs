@@ -13,12 +13,12 @@ namespace Assets.Editor
             EditorWindow.GetWindow<BuildApp>();
         }
 
-        [MenuItem("BuildApp/Switch To Plague Dodge")]
+        [MenuItem("BuildApp/Switch To Coronaforce")]
         public static void SwitchToPlagueDodge()
         {
             Switch(false,true);
-            var packageName = "com.evanssoftware.plaguedodge";
-            var productName = "Plague Dodge";
+            var packageName = "com.evanssoftware.coronaforce";
+            var productName = "Coronaforce";
             UpdateBuildSettings(packageName, productName,"PlagueDodge");
         }
         [MenuItem("BuildApp/Switch To DotDodge")]
@@ -35,19 +35,6 @@ namespace Assets.Editor
             PlayerSettings.bundleVersion = "0." + PlayerSettings.Android.bundleVersionCode;
         }
 
-        [MenuItem("BuildApp/Build")]
-        public static void Build()
-        {
-            //BuildPipeline.BuildPlayer(new BuildPlayerOptions(){});
-        }
-
-        //public Texture2D Icon;
-        //public Texture2D DotIcons;
-        //void OnGUI()
-        //{
-        //    Icon = (Texture2D) EditorGUILayout.ObjectField(Icon, typeof(Texture2D), false);
-        //    DotIcons = (Texture2D) EditorGUILayout.ObjectField(DotIcons, typeof(Texture2D), false);
-        //}
         private static void UpdateBuildSettings(string packageName, string productName, string iconFolder)
         {
             PlayerSettings.productName = productName;
