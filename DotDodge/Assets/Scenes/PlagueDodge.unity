@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68, type: 3}
       propertyPath: Jump
-      value: 250
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68, type: 3}
       propertyPath: MaxVelocity
