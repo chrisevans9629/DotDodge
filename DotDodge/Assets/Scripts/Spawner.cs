@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +9,8 @@ using Random = UnityEngine.Random;
 public class Spawner : SpawnerBase
 {
     public GameObject EnemyPrefab;
+
+    public AddPoints AddPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,13 @@ public class Spawner : SpawnerBase
     {
         var result = base.SpawnObject(prefab);
         result.transform.rotation = Quaternion.AngleAxis(15, Vector3.forward);
+
+        var enemy = result.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.HitEvent.AddListener(() => AddPoints?.AddPointsToPlayer());
+        }
+
         return result;
     }
 }

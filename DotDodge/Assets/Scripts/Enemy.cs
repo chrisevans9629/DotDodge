@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MoveableObject
 {
     public ParticleSystem ParticleSystem;
     private Rigidbody rb;
     public Rigidbody2D rb2d;
-
+    public UnityEvent HitEvent;
     public AudioSource HitSound;
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class Enemy : MoveableObject
 
     private void Impact()
     {
+        HitEvent.Invoke();
         HitSound?.PlayOneShot(HitSound.clip);
         ParticleSystem.Play();
         if (rb != null)
