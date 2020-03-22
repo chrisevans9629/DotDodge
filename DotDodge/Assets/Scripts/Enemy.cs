@@ -7,6 +7,8 @@ public class Enemy : MoveableObject
     public ParticleSystem ParticleSystem;
     private Rigidbody rb;
     public Rigidbody2D rb2d;
+
+    public AudioSource HitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class Enemy : MoveableObject
 
     private void Impact()
     {
+        HitSound?.PlayOneShot(HitSound.clip);
         ParticleSystem.Play();
         if (rb != null)
             rb.isKinematic = false;
