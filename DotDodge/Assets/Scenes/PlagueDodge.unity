@@ -1912,6 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextPrefab: {fileID: 3278977607335704596, guid: ad13193a7f6ca7349a19c84c4af2b583,
     type: 3}
+  Position: {x: -3, y: 4.5}
   InDuration: 0.2
   OutDuration: 1
 --- !u!1 &1485213196

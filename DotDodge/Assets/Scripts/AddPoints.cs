@@ -16,7 +16,7 @@ namespace Assets.Scripts
         public PointEvent GotPoints;
 
         public void AddPointsToPlayer()
-        {
+         {
             Player.Score += PointValue;
             GotPoints.Invoke(PointValue);
         }

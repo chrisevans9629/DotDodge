@@ -6,12 +6,12 @@ namespace Assets.Scripts
     public class ShowPoints : MonoBehaviour
     {
         public Text TextPrefab;
-
+        public Vector2 Position;
         public float InDuration;
         public float OutDuration;
         public void OnPointScored(float value)
         {
-            var text = Instantiate(TextPrefab, transform.position, Quaternion.identity, transform);
+            var text = Instantiate(TextPrefab, Position, Quaternion.identity, transform);
 
             text.text = $"+{value}";
             text.gameObject.transform.localScale = Vector3.zero;
