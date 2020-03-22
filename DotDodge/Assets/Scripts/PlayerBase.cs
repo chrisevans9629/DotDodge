@@ -17,6 +17,8 @@ public abstract class PlayerBase : MonoBehaviour
     public GameObject Bullet;
     public bool GameIsRunning = true;
     private PlayerInputActions input;
+
+    public AudioSource GunSound;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -94,7 +96,10 @@ public abstract class PlayerBase : MonoBehaviour
         {
             yield return new WaitForSeconds(FireRateSeconds);
             if (GameIsRunning)
+            {
                 Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
+                GunSound?.Play(0);
+            }
         }
     }
     // Update is called once per frame
