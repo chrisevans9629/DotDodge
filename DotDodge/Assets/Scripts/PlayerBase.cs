@@ -78,7 +78,7 @@ public abstract class PlayerBase : MonoBehaviour
             PlayerPrefs.SetFloat(scoreKey, Score);
         }
     }
-
+    
     public void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Bullet"))

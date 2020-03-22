@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68, type: 3}
       propertyPath: Jump
-      value: 350
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68, type: 3}
       propertyPath: MaxVelocity
@@ -1429,7 +1429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 218.8, y: -63.5}
+  m_AnchoredPosition: {x: 218.7998, y: -63.5}
   m_SizeDelta: {x: 420.3, y: 92.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1374090234
@@ -2299,6 +2299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1947721798}
   - component: {fileID: 1947721799}
+  - component: {fileID: 1947721800}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -2340,6 +2341,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454e09d8f56bc8c4d8b8c88ac0d2102e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1947721800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947721797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef3f38db2a4888449c66bbaa8da7bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2018372511}
 --- !u!114 &1949095301 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68,
