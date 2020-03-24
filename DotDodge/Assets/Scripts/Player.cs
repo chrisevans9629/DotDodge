@@ -12,7 +12,11 @@ public class Player : PlayerBase
 
     protected override void JumpOnPerformed(InputAction.CallbackContext obj)
     {
-        rb.AddForce(0, Jump * Time.deltaTime, 0, ForceMode.Impulse);
+        if (obj.performed)
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(0, Jump * Time.fixedDeltaTime, 0, ForceMode.Impulse);
+        }
     }
 
    
