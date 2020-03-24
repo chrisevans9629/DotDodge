@@ -16,13 +16,13 @@ public abstract class PlayerBase : MonoBehaviour
     public UnityEvent PlayerDied;
     public GameObject Bullet;
     public bool GameIsRunning = true;
-    private PlayerInputActions input;
+    private PlayerInputActions2 input;
 
     public AudioSource GunSound;
     // Start is called before the first frame update
     public void Awake()
     {
-        input = new PlayerInputActions();
+        input = new PlayerInputActions2();
         input.Player.Jump.performed += JumpOnPerformed;
     }
 

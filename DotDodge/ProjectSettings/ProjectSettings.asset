@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.4
+  bundleVersion: 0.5
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 0}
@@ -172,7 +172,7 @@ PlayerSettings:
     Android: com.evanssoftware.coronaforce
     Standalone: com.evanssoftware.coronaforce
   buildNumber: {}
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

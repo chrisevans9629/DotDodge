@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputActions",
+    "name": "PlayerInputActions2",
     "maps": [
         {
             "name": "Player",
@@ -29,10 +29,21 @@
                 {
                     "name": "",
                     "id": "13b0f3ea-281d-4704-951a-eec7081328bd",
-                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "path": "<Touchscreen>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "662af738-3022-4352-973d-640cee763f30",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
