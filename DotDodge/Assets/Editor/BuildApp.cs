@@ -13,12 +13,12 @@ namespace Assets.Editor
             EditorWindow.GetWindow<BuildApp>();
         }
 
-        [MenuItem("BuildApp/Switch To Coronaforce")]
+        [MenuItem("BuildApp/Switch To Plagueforce")]
         public static void SwitchToPlagueDodge()
         {
             Switch(false,true);
             var packageName = "com.evanssoftware.coronaforce";
-            var productName = "Coronaforce";
+            var productName = "Plagueforce";
             UpdateBuildSettings(packageName, productName,"PlagueDodge");
         }
         [MenuItem("BuildApp/Switch To DotDodge")]

@@ -56,7 +56,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (IgnoreTags != null && IgnoreTags.Contains(other.tag))
             return;
-        if (!other.CompareTag("Bullet"))
+        if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
         {
             UpdateHighscore();
             PlayerDied.Invoke();
