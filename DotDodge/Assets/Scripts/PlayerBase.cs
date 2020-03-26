@@ -80,10 +80,10 @@ public abstract class PlayerBase : MonoBehaviour
             PlayerPrefs.SetFloat(scoreKey, Score);
         }
     }
-    
+
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Bullet"))
+        if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
         {
             PlayerDied.Invoke();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -98,7 +98,8 @@ public abstract class PlayerBase : MonoBehaviour
             if (GameIsRunning)
             {
                 Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
-                GunSound?.Play(0);
+                if (GunSound != null)
+                    GunSound?.Play(0);
             }
         }
     }

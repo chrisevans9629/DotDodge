@@ -9,11 +9,21 @@ namespace Assets.Scripts
         public AudioSource HitSound;
         public float PowerupValue;
         public SpriteRenderer SpriteRenderer;
+        public float DeathDelay = 1;
         private void OnTriggerEnter2D(Collider2D collision)
+        {
+            AddFireRate(collision.gameObject);
+        }
+        private void OnTriggerEnter(Collider collision)
+        {
+            AddFireRate(collision.gameObject);
+        }
+
+        private void AddFireRate(GameObject collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                var player = collision.gameObject.GetComponent<Player2D>();
+                var player = collision.gameObject.GetComponent<PlayerBase>();
                 if (player != null)
                 {
                     player.FireRateSeconds *= PowerupValue;
@@ -21,7 +31,6 @@ namespace Assets.Scripts
                 }
             }
         }
-
         //private void OnCollisionEnter2D(Collision2D collision)
         //{
         //    if (collision.gameObject.CompareTag("Player"))
@@ -33,15 +42,16 @@ namespace Assets.Scripts
         private void Impact()
         {
             HitEvent.Invoke();
-            HitSound?.PlayOneShot(HitSound.clip);
-
-            var from = SpriteRenderer.color;
-
-            var to = SpriteRenderer.color;
-            to.a = 0;
-
-            LeanTween.value(gameObject, color => SpriteRenderer.color = color, from, to, 1f);
-            Destroy(gameObject, 1f);
+            if (HitSound != null)
+                HitSound?.PlayOneShot(HitSound.clip);
+            if (SpriteRenderer != null)
+            {
+                var from = SpriteRenderer.color;
+                var to = SpriteRenderer.color;
+                to.a = 0;
+                LeanTween.value(gameObject, color => SpriteRenderer.color = color, from, to, DeathDelay);
+            }
+            Destroy(gameObject, DeathDelay);
         }
     }
 }

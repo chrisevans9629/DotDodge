@@ -687,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720e851b5345a0242b7ee12b6656c8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreTags: []
 --- !u!54 &638873474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -810,6 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720e851b5345a0242b7ee12b6656c8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreTags: []
 --- !u!54 &793646427
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1421,6 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720e851b5345a0242b7ee12b6656c8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreTags: []
 --- !u!54 &1492989020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1477,6 +1480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823230911}
   - component: {fileID: 1823230910}
+  - component: {fileID: 1823230912}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -1502,11 +1506,12 @@ MonoBehaviour:
   MinSeconds: 0.2
   MinSpeed: 2
   MaxSpeed: 6
+  DifficultyEveryScore: 1000
+  DifficultyIncrement: 0.5
+  Player: {fileID: 2118938070}
   EnemyPrefab: {fileID: 3263591600573260405, guid: 54ad85f0eeb21ba4e8239abb5aa63357,
     type: 3}
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 1
-  Player: {fileID: 2118938070}
+  AddPoints: {fileID: 0}
 --- !u!4 &1823230911
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,6 +1526,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823230912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae53e5a109c676e40bdbd4273e7c4da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 10
+  MinSeconds: 5
+  MinSpeed: 2
+  MaxSpeed: 4
+  DifficultyEveryScore: 1000
+  DifficultyIncrement: 0.5
+  Player: {fileID: 2118938070}
+  Powerup: {fileID: 4674871300978871664, guid: 37704e7b90a2a194e9b03ec6b1b86646, type: 3}
 --- !u!1 &2001229918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1770,7 @@ GameObject:
   - component: {fileID: 2118938070}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,7 +1783,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118938064}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1851,9 +1878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28cc38413f01dde47ba29f41023cb806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreTags: []
   Score: 0
   text: {fileID: 1374090234}
-  Jump: 500
+  Jump: 150
   FirePosition: {fileID: 1574735975}
   FireRateSeconds: 1
   PlayerDied:
@@ -1871,4 +1899,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Bullet: {fileID: 9177294919599725071, guid: 5fa35681d19e7a8499daa93bfbb34e80, type: 3}
+  GameIsRunning: 1
+  GunSound: {fileID: 0}
   rb: {fileID: 2118938069}

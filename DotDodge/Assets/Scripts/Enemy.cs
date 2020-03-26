@@ -39,7 +39,8 @@ public class Enemy : MoveableObject
     private void Impact()
     {
         HitEvent.Invoke();
-        HitSound?.PlayOneShot(HitSound.clip);
+        if (HitSound != null)
+            HitSound?.PlayOneShot(HitSound?.clip);
         ParticleSystem.Play();
         if (rb != null)
             rb.isKinematic = false;
