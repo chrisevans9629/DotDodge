@@ -20,6 +20,8 @@ public abstract class PlayerBase : MonoBehaviour
     [HideInInspector]
     public bool IsDead;
     public AudioSource GunSound;
+
+    public SpriteRenderer sprite;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -32,7 +34,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         StartCoroutine(Fire());
         Time.timeScale = 1;
-
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void OnDisable()
@@ -62,15 +64,26 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (IgnoreTags != null && IgnoreTags.Contains(other.tag))
             return;
-        if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
+        if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup") && !IsDead)
         {
             IsDead = true;
             UpdateHighscore();
-            PlayerDied.Invoke();
+            if (sprite != null)
+            {
+                LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f)
+                    .setOnComplete(() => PlayerDied.Invoke());
+            }
+            // StartCoroutine(DeathAnimation());
+            //PlayerDied.Invoke();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
+    IEnumerator DeathAnimation()
+    {
+        yield return new WaitForSeconds(2);
+        PlayerDied.Invoke();
+    }
     private void UpdateHighscore()
     {
         var scoreKey = "score";
@@ -113,7 +126,7 @@ public abstract class PlayerBase : MonoBehaviour
         //{
         //}
 
-        if (Time.timeScale > 0 && GameIsRunning)
+        if (Time.timeScale > 0 && GameIsRunning && !IsDead)
         {
             Score++;
             text.text = "Score: " + Score;

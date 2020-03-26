@@ -52,6 +52,16 @@ public class RestartGame : MonoBehaviour
         Player.Score = 0;
         Player.GameIsRunning = true;
         Player.IsDead = false;
+        if (Player.sprite != null)
+        {
+            Player.sprite.color = Color.white;
+        }
+
+        if (Player is Player2D p)
+        {
+            p.rb.velocity = Vector2.zero;
+        }
+
         foreach (Transform children in Spawner.transform)
         {
             Destroy(children.gameObject);
