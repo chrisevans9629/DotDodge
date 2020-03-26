@@ -9,6 +9,11 @@ namespace Assets.Scripts
         public Text text;
         void Start()
         {
+            UpdateHighScoreText();
+        }
+
+        public void UpdateHighScoreText()
+        {
             if (PlayerPrefs.HasKey("score"))
             {
                 text.text = "Highscore: " + PlayerPrefs.GetFloat("score", 0).ToString(CultureInfo.InvariantCulture);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class RestartGame : MonoBehaviour
     public GameObject PauseUI;
     private Vector2 playerStart;
     public GameObject ResumeButton;
+    public MainMenu MainMenu;
     void Start()
     {
         playerStart = Player.transform.position;
@@ -19,6 +21,7 @@ public class RestartGame : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseUI.SetActive(false);
+        MainMenu.text.gameObject.SetActive(false);
     }
 
     public void Pause()
@@ -33,6 +36,7 @@ public class RestartGame : MonoBehaviour
         {
             ResumeButton.SetActive(true);
         }
+        MainMenu.text.gameObject.SetActive(true);
     }
 
     public void GiveUp()
@@ -53,6 +57,8 @@ public class RestartGame : MonoBehaviour
             Destroy(children.gameObject);
             //Destroy(children);
         }
+        MainMenu.text.gameObject.SetActive(false);
+        MainMenu.UpdateHighScoreText();
     }
 
     public void ReloadScene()
