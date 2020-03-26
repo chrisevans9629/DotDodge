@@ -19,5 +19,9 @@ public class Player : PlayerBase
         }
     }
 
-   
+    public void StartGame()
+    {
+        rb.isKinematic = false;
+        GameIsRunning = true;
+    }
 }

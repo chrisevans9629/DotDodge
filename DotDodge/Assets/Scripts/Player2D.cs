@@ -18,12 +18,12 @@ public class Player2D : PlayerBase
             
         }
     }
-    
-   
 
     public void StartGame()
     {
         rb.simulated = true;
         GameIsRunning = true;
     }
+
+
 }

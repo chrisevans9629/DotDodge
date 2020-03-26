@@ -54,6 +54,11 @@ public abstract class PlayerBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        ApplyCollision(other.gameObject);
+    }
+
+    private void ApplyCollision(GameObject other)
+    {
         if (IgnoreTags != null && IgnoreTags.Contains(other.tag))
             return;
         if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
@@ -83,11 +88,7 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
-        {
-            PlayerDied.Invoke();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        ApplyCollision(other.gameObject);
     }
 
     IEnumerator Fire()
