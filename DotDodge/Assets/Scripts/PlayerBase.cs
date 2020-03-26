@@ -17,7 +17,8 @@ public abstract class PlayerBase : MonoBehaviour
     public GameObject Bullet;
     public bool GameIsRunning = true;
     private PlayerInputActions2 input;
-
+    [HideInInspector]
+    public bool IsDead;
     public AudioSource GunSound;
     // Start is called before the first frame update
     public void Awake()
@@ -63,6 +64,7 @@ public abstract class PlayerBase : MonoBehaviour
             return;
         if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup"))
         {
+            IsDead = true;
             UpdateHighscore();
             PlayerDied.Invoke();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
