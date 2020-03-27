@@ -58,7 +58,21 @@ namespace Assets.Scripts
         {
             PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
+            MoveUp();
+            //LeanTween.value(this.gameObject, f => transform.position += new Vector3(0, f, 0), transform.position.y,
+            //    transform.position.y + 1f, 2f);
         }
+
+        void MoveUp()
+        {
+            LeanTween.moveY(gameObject, transform.position.y + 1, 2).setEaseInOutQuad().setOnComplete(MoveDown);
+        }
+
+        void MoveDown()
+        {
+            LeanTween.moveY(gameObject, transform.position.y - 1, 2).setEaseInOutQuad().setOnComplete(MoveUp);
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             AddFireRate(collision.gameObject);

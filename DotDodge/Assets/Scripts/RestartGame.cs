@@ -9,7 +9,7 @@ public class RestartGame : MonoBehaviour
     public PlayerBase Player;
     public GameObject Spawner;
     public GameObject PauseUI;
-    private Vector2 playerStart;
+    private Vector3 playerStart;
     public GameObject ResumeButton;
     public MainMenu MainMenu;
     void Start()
@@ -47,11 +47,18 @@ public class RestartGame : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+
+        LeanTween.value(this.gameObject, v => Player.transform.position = v, Player.transform.position, playerStart, 0.5f)
+            .setOnComplete(() =>
+            {
+                Player.GameIsRunning = true;
+                Player.IsDead = false;
+            });
         PauseUI.SetActive(false);
-        Player.transform.position = playerStart;
+
+        //Player.transform.position = playerStart;
         Player.Score = 0;
-        Player.GameIsRunning = true;
-        Player.IsDead = false;
+        
         if (Player.sprite != null)
         {
             Player.sprite.color = Color.white;
