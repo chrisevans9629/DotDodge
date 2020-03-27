@@ -27,6 +27,7 @@ public abstract class PlayerBase : MonoBehaviour
     public int BulletCount = 1;
     public SpriteRenderer sprite;
     public Healthbar Healthbar;
+    public StressReceiver StressReceiver;
     private int _shieldCount;
     //public int ShieldCount
     //{
@@ -126,6 +127,11 @@ public abstract class PlayerBase : MonoBehaviour
             if (DamageSound != null)
             {
                 DamageSound.PlayOneShot(DamageSound.clip);
+            }
+
+            if (StressReceiver != null)
+            {
+                StressReceiver.InduceStress(0.5f);
             }
             // StartCoroutine(DeathAnimation());
             //PlayerDied.Invoke();
