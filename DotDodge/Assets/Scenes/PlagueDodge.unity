@@ -3398,8 +3398,8 @@ MonoBehaviour:
   MinSeconds: 1
   MinSpeed: 2
   MaxSpeed: 6
-  DifficultyEveryScore: 5000
-  DifficultyIncrement: 1
+  DifficultyEveryScore: 1000
+  DifficultyIncrement: 0.5
   Player: {fileID: 1949095301}
   Tree: {fileID: 9033935133280420689, guid: 3f25f11ed8b190744ae41ea34dd69fd3, type: 3}
   MaxSize: 0.5

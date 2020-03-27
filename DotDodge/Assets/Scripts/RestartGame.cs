@@ -26,6 +26,7 @@ public class RestartGame : MonoBehaviour
 
     public void Pause()
     {
+        MainMenu.UpdateHighScoreText();
         Time.timeScale = 0;
         PauseUI.SetActive(true);
         if (Player.IsDead)
