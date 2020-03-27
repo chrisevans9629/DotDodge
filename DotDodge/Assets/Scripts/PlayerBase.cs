@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using Assets.Scripts;
+using Boo.Lang;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -150,7 +152,28 @@ public abstract class PlayerBase : MonoBehaviour
     {
         ApplyCollision(other.gameObject);
     }
+    public static float GetMedian(float[] sourceArray, bool cloneArray = true)
+    {
+        //Framework 2.0 version of this method. there is an easier way in F4        
+        if (sourceArray == null || sourceArray.Length == 0)
+            throw new ArgumentException("Median of empty array not defined.");
 
+        //make sure the list is sorted, but use a new array
+        var sortedArray = cloneArray ? (float[])sourceArray.Clone() : sourceArray;
+        Array.Sort(sortedArray);
+
+        //get the median
+        int size = sortedArray.Length;
+        int mid = size / 2;
+        if (size % 2 != 0)
+            return sortedArray[mid];
+
+        float value1 = sortedArray[mid];
+        float value2 = sortedArray[mid - 1];
+        return (sortedArray[mid] + value2) * 0.5f;
+    }
+
+    private List<float> angles = new List<float>();
     IEnumerator Fire()
     {
         while (true)
@@ -158,9 +181,25 @@ public abstract class PlayerBase : MonoBehaviour
             yield return new WaitForSeconds(FireRateSeconds);
             if (GameIsRunning)
             {
-                for (int i = 0; i < BulletCount; i++)
+                if (BulletCount == 1)
                 {
-                    Instantiate(Bullet, FirePosition.transform.position + (Vector3.up * i), Quaternion.identity);
+                    Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    var angleOffset = 45f / BulletCount;
+                    angles.Clear();
+                    for (int i = 0; i < BulletCount; i++)
+                    {
+                        angles.Add(angleOffset * (i+1));
+                    }
+
+                    var medianOffset = GetMedian(angles.ToArray());
+
+                    for (int i = 0; i < BulletCount; i++)
+                    {
+                        Instantiate(Bullet, FirePosition.transform.position, Quaternion.AngleAxis(angles[i] - medianOffset, Vector3.forward));
+                    }
                 }
                 if (GunSound != null)
                     GunSound?.Play(0);
