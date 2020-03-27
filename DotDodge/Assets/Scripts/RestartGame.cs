@@ -59,7 +59,7 @@ public class RestartGame : MonoBehaviour
 
         Player.FireRateSeconds = 1;
         Player.BulletCount = 1;
-        Player.ShieldCount = 0;
+        Player.ResetHealth();
         if (Player is Player2D p)
         {
             p.rb.velocity = Vector2.zero;

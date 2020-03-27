@@ -5022,6 +5022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7831501e6ed059b45b1a7501eb7c0036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreTags: []
   Score: 0
   text: {fileID: 0}
   Jump: 10000
@@ -5042,7 +5043,14 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Bullet: {fileID: 9177294919599725071, guid: 35a97aa403c305b45bad37a5f246c49b, type: 3}
+  GameIsRunning: 1
+  IsDead: 0
+  GunSound: {fileID: 0}
+  BulletCount: 1
+  sprite: {fileID: 0}
+  ShieldCount: 0
   rb: {fileID: 1949095300}
+  jumpSound: {fileID: 0}
 --- !u!1 &1778325567269058299
 GameObject:
   m_ObjectHideFlags: 0

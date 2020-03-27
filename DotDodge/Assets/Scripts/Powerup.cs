@@ -66,7 +66,7 @@ namespace Assets.Scripts
                     player.BulletCount++;
                     break;
                 case PowerupType.AddShield:
-                    player.ShieldCount++;
+                    player.AddHealth();
                     break;
             }
             Impact();

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -22,7 +23,42 @@ public abstract class PlayerBase : MonoBehaviour
     public AudioSource GunSound;
     public int BulletCount = 1;
     public SpriteRenderer sprite;
-    public int ShieldCount = 0;
+    public Healthbar Healthbar;
+    private int _shieldCount;
+    //public int ShieldCount
+    //{
+    //    get => _shieldCount;
+    //    set { _shieldCount = value;
+    //        OnShieldCountChanged();
+    //    }
+    //}
+    public void AddHealth()
+    {
+        _shieldCount++;
+        if (Healthbar != null)
+        {
+            Healthbar.AddHealth();
+        }
+    }
+
+    public void ResetHealth()
+    {
+        _shieldCount = 0;
+        if (Healthbar != null)
+        {
+            Healthbar.ResetHealth();
+        }
+    }
+    public void RemoveHealth()
+    {
+        _shieldCount--;
+        if (Healthbar != null)
+        {
+            Healthbar.RemoveHealth();
+        }
+    }
+
+  
 
     // Start is called before the first frame update
     public void Awake()
@@ -36,7 +72,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         StartCoroutine(Fire());
         Time.timeScale = 1;
-        sprite = GetComponent<SpriteRenderer>();
+       // sprite = GetComponent<SpriteRenderer>();
     }
 
     public void OnDisable()
@@ -68,12 +104,19 @@ public abstract class PlayerBase : MonoBehaviour
             return;
         if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup") && !IsDead)
         {
-            IsDead = true;
-            UpdateHighscore();
-            if (sprite != null)
+            if (this._shieldCount <= 0)
             {
-                LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f)
-                    .setOnComplete(() => PlayerDied.Invoke());
+                IsDead = true;
+                UpdateHighscore();
+                if (sprite != null)
+                {
+                    LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f)
+                        .setOnComplete(() => PlayerDied.Invoke());
+                }
+            }
+            else
+            {
+                RemoveHealth();
             }
             // StartCoroutine(DeathAnimation());
             //PlayerDied.Invoke();
