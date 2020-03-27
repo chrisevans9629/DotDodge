@@ -40,7 +40,7 @@ namespace Assets.Scripts
         public PowerupType PowerupType;
         void Start()
         {
-            PowerupType = (PowerupType) Random.Range(0, Enum.GetNames(typeof(PowerupType)).Length - 1);
+            PowerupType = (PowerupType) Random.Range(0, Enum.GetNames(typeof(PowerupType)).Length);
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
         }
         private void OnTriggerEnter2D(Collider2D collision)
