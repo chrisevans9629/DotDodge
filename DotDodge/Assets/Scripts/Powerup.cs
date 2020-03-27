@@ -1,8 +1,35 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
+    public enum PowerupType
+    {
+        IncreaseFireRate,
+        IncreaseBulletCount,
+        AddShield,
+    }
+
+    public static class PowerupExt
+    {
+        public static Color GetColor(PowerupType type)
+        {
+            switch (type)
+            {
+                case PowerupType.IncreaseFireRate:
+                    return Color.white;
+                case PowerupType.AddShield:
+                    return Color.blue;
+                case PowerupType.IncreaseBulletCount:
+                    return Color.red;
+                default:
+                    return Color.white;
+            }
+        }
+    }
+
     public class Powerup : MoveableObject
     {
         public UnityEvent HitEvent;
@@ -10,6 +37,12 @@ namespace Assets.Scripts
         public float PowerupValue;
         public SpriteRenderer SpriteRenderer;
         public float DeathDelay = 1;
+        public PowerupType PowerupType;
+        void Start()
+        {
+            PowerupType = (PowerupType) Random.Range(0, Enum.GetNames(typeof(PowerupType)).Length - 1);
+            SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             AddFireRate(collision.gameObject);
@@ -21,15 +54,22 @@ namespace Assets.Scripts
 
         private void AddFireRate(GameObject collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (!collision.gameObject.CompareTag("Player")) return;
+            var player = collision.gameObject.GetComponent<PlayerBase>();
+            if (player == null) return;
+            switch (PowerupType)
             {
-                var player = collision.gameObject.GetComponent<PlayerBase>();
-                if (player != null)
-                {
+                case PowerupType.IncreaseFireRate:
                     player.FireRateSeconds *= PowerupValue;
-                    Impact();
-                }
+                    break;
+                case PowerupType.IncreaseBulletCount:
+                    player.BulletCount++;
+                    break;
+                case PowerupType.AddShield:
+                    player.ShieldCount++;
+                    break;
             }
+            Impact();
         }
         //private void OnCollisionEnter2D(Collision2D collision)
         //{

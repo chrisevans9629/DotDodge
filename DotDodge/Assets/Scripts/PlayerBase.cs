@@ -20,8 +20,10 @@ public abstract class PlayerBase : MonoBehaviour
     [HideInInspector]
     public bool IsDead;
     public AudioSource GunSound;
-
+    public int BulletCount = 1;
     public SpriteRenderer sprite;
+    public int ShieldCount = 0;
+
     // Start is called before the first frame update
     public void Awake()
     {
@@ -113,7 +115,10 @@ public abstract class PlayerBase : MonoBehaviour
             yield return new WaitForSeconds(FireRateSeconds);
             if (GameIsRunning)
             {
-                Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);
+                for (int i = 0; i < BulletCount; i++)
+                {
+                    Instantiate(Bullet, FirePosition.transform.position + (Vector3.up * i), Quaternion.identity);
+                }
                 if (GunSound != null)
                     GunSound?.Play(0);
             }

@@ -57,6 +57,9 @@ public class RestartGame : MonoBehaviour
             Player.sprite.color = Color.white;
         }
 
+        Player.FireRateSeconds = 1;
+        Player.BulletCount = 1;
+        Player.ShieldCount = 0;
         if (Player is Player2D p)
         {
             p.rb.velocity = Vector2.zero;
