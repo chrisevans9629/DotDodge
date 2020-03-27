@@ -12,10 +12,11 @@ public class Spawner : SpawnerBase
 
     public AddPoints AddPoints;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         nextDifficulty = DifficultyEveryScore;
         StartCoroutine(Spawn(EnemyPrefab));
+        base.Start();
     }
 
     protected override GameObject SpawnObject(GameObject prefab)

@@ -21,12 +21,28 @@ namespace Assets.Scripts
                 case PowerupType.IncreaseFireRate:
                     return Color.white;
                 case PowerupType.AddShield:
-                    return Color.blue;
+                    return Color.green;
                 case PowerupType.IncreaseBulletCount:
                     return Color.red;
                 default:
                     return Color.white;
             }
+        }
+
+
+        public static PowerupType GetTypeFromRandom(float value)
+        {
+            if (value >= 0.5f)
+            {
+                return PowerupType.IncreaseFireRate;
+            }
+
+            if (value > 0.2f)
+            {
+                return PowerupType.AddShield;
+            }
+
+            return PowerupType.IncreaseBulletCount;
         }
     }
 
@@ -40,7 +56,7 @@ namespace Assets.Scripts
         public PowerupType PowerupType;
         void Start()
         {
-            PowerupType = (PowerupType) Random.Range(0, Enum.GetNames(typeof(PowerupType)).Length);
+            PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
         }
         private void OnTriggerEnter2D(Collider2D collision)

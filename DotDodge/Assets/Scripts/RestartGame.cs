@@ -64,7 +64,7 @@ public class RestartGame : MonoBehaviour
         {
             p.rb.velocity = Vector2.zero;
         }
-
+        
         foreach (Transform children in Spawner.transform)
         {
             Destroy(children.gameObject);

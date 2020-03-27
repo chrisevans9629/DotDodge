@@ -23,6 +23,7 @@ public abstract class PlayerBase : MonoBehaviour
     [HideInInspector]
     public bool IsDead;
     public AudioSource GunSound;
+    public AudioSource DamageSound;
     public int BulletCount = 1;
     public SpriteRenderer sprite;
     public Healthbar Healthbar;
@@ -114,11 +115,17 @@ public abstract class PlayerBase : MonoBehaviour
                 {
                     LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f)
                         .setOnComplete(() => PlayerDied.Invoke());
+                    LeanTween.value(this.gameObject, f => Time.timeScale = f, 1f, 0.3f, 1f);
                 }
             }
             else
             {
                 RemoveHealth();
+            }
+
+            if (DamageSound != null)
+            {
+                DamageSound.PlayOneShot(DamageSound.clip);
             }
             // StartCoroutine(DeathAnimation());
             //PlayerDied.Invoke();
@@ -187,7 +194,7 @@ public abstract class PlayerBase : MonoBehaviour
                 }
                 else
                 {
-                    var angleOffset = 45f / BulletCount;
+                    var angleOffset = 30f / BulletCount;
                     angles.Clear();
                     for (int i = 0; i < BulletCount; i++)
                     {

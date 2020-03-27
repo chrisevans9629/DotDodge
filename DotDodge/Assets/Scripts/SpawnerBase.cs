@@ -14,6 +14,22 @@ public class SpawnerBase : MonoBehaviour
     public PlayerBase Player;
 
     protected float nextDifficulty;
+
+    public virtual void Start()
+    {
+        initialMaxSpeed = MaxSpeed;
+        initialMinSpeed = MinSpeed;
+    }
+
+    private float initialMaxSpeed;
+    private float initialMinSpeed;
+    public void ResetSpawner()
+    {
+        nextDifficulty = 0;
+        MaxSpeed = initialMaxSpeed;
+        MinSpeed = initialMinSpeed;
+    }
+
     protected void ShouldIncreaseDifficulty()
     {
         if (Player.Score > nextDifficulty)

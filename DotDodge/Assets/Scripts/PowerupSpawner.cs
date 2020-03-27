@@ -5,10 +5,11 @@ namespace Assets.Scripts
     public class PowerupSpawner : SpawnerBase
     {
         public GameObject Powerup;
-        void Start()
+        public override void Start()
         {
             nextDifficulty = DifficultyEveryScore;
             StartCoroutine(Spawn(Powerup));
+            base.Start();
         }
     }
 }
