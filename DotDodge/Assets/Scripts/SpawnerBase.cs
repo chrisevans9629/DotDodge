@@ -9,43 +9,32 @@ public class SpawnerBase : MonoBehaviour
     public float MinSeconds;
     public float MinSpeed;
     public float MaxSpeed;
-    public float DifficultyEveryScore = 5000;
-    public float DifficultyIncrement = 1;
-    public PlayerBase Player;
+    public GameObject ObjectToSpawn;
 
-    protected float nextDifficulty;
 
     public virtual void Start()
     {
         initialMaxSpeed = MaxSpeed;
         initialMinSpeed = MinSpeed;
+        StartCoroutine(Spawn());
     }
 
     private float initialMaxSpeed;
     private float initialMinSpeed;
-    public void ResetSpawner()
+    public virtual void ResetSpawner()
     {
-        nextDifficulty = 0;
         MaxSpeed = initialMaxSpeed;
         MinSpeed = initialMinSpeed;
     }
 
-    protected void ShouldIncreaseDifficulty()
-    {
-        if (Player.Score > nextDifficulty)
-        {
-            this.MaxSpeed += DifficultyIncrement;
-            this.MinSpeed += DifficultyIncrement;
-            nextDifficulty += DifficultyEveryScore;
-        }
-    }
-    protected IEnumerator Spawn(GameObject prefab)
+
+    protected IEnumerator Spawn()
     {
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(MinSeconds, MaxSeconds));
 
-            SpawnObject(prefab);
+            SpawnObject(ObjectToSpawn);
         }
 
     }
@@ -57,8 +46,8 @@ public class SpawnerBase : MonoBehaviour
 
         var result = Instantiate(prefab, position, Quaternion.identity, transform);
         var speed = result.GetComponent<ISpeed>();
-        speed.SpeedValue = Random.Range(MinSpeed, MaxSpeed);
-        ShouldIncreaseDifficulty();
+        if (speed != null)
+            speed.SpeedValue = Random.Range(MinSpeed, MaxSpeed);
         return result;
     }
 }

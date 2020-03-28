@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,9 +14,12 @@ public class Enemy : MoveableObject
     public Rigidbody2D rb2d;
     public UnityEvent HitEvent;
     public AudioSource HitSound;
+
+    private Hover hover;
     // Start is called before the first frame update
     void Start()
     {
+        hover = GetComponentInChildren<Hover>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -49,6 +53,7 @@ public class Enemy : MoveableObject
             rb2d.bodyType = RigidbodyType2D.Dynamic;
             rb2d.angularVelocity = 90;
         }
+        hover.StopHovering();
     }
 
 }

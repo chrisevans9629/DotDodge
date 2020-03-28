@@ -11,11 +11,11 @@ public class TreeParalax : SpawnerBase
     public float MinSize;
     public float SpeedScaleRatio = 0.8f;
     // Start is called before the first frame update
-    public override void Start()
-    {
-        StartCoroutine(Spawn(Tree));
-        base.Start();
-    }
+    //public override void Start()
+    //{
+    //    StartCoroutine(Spawn(Tree));
+    //    base.Start();
+    //}
 
     protected override GameObject SpawnObject(GameObject prefab)
     {

@@ -2,14 +2,14 @@
 
 namespace Assets.Scripts
 {
-    public class PowerupSpawner : SpawnerBase
+    public class PowerupSpawner : IncrementalSpawner
     {
         public GameObject Powerup;
-        public override void Start()
-        {
-            nextDifficulty = DifficultyEveryScore;
-            StartCoroutine(Spawn(Powerup));
-            base.Start();
-        }
+        //public override void Start()
+        //{
+        //    nextDifficulty = DifficultyEveryScore;
+        //   // StartCoroutine(Spawn(Powerup));
+        //    base.Start();
+        //}
     }
 }
