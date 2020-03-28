@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3670742302083474032}
   - component: {fileID: 324121696717777751}
   - component: {fileID: 1770473425833849840}
+  - component: {fileID: 4836614911412108350}
   m_Layer: 0
   m_Name: Sonar
   m_TagString: EnemyBullet
@@ -112,3 +113,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.7}
   m_Size: {x: 9.24, y: 8.45}
   m_Direction: 0
+--- !u!114 &4836614911412108350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670742302083474034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb69fa2907aa0048837d72b984a21e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 10
