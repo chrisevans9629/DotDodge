@@ -3038,6 +3038,7 @@ GameObject:
   - component: {fileID: 1823230912}
   - component: {fileID: 1823230913}
   - component: {fileID: 1823230914}
+  - component: {fileID: 1823230915}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -3071,6 +3072,10 @@ MonoBehaviour:
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
   AddPoints: {fileID: 1823230912}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 0.5
+  HoverIncreaseDelta: 0.02
 --- !u!4 &1823230911
 Transform:
   m_ObjectHideFlags: 0
@@ -3165,6 +3170,40 @@ MonoBehaviour:
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
   AddPoints: {fileID: 1823230912}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 0.5
+  HoverIncreaseDelta: 0.02
+--- !u!114 &1823230915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 6
+  MinSeconds: 3
+  MinSpeed: 2
+  MaxSpeed: 6
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: c5a08b782efdd144f9e06941bcc25b43,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 12000
+  DifficultyEveryScore: 1000
+  DifficultyIncrement: 0.25
+  Player: {fileID: 1949095301}
+  AddPoints: {fileID: 1823230912}
+  Color: {r: 0.9716981, g: 0.43543077, b: 0.47373566, a: 1}
+  Health: 1
+  HoverAmount: 0.5
+  HoverIncreaseDelta: 0.02
 --- !u!1 &1843185191
 GameObject:
   m_ObjectHideFlags: 0

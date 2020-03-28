@@ -2,7 +2,9 @@
 
 public class IncrementalSpawner : SpawnerBase
 {
+    [Tooltip("this will be added to the difficulty every score")]
     public float StartSpawningAt = 0;
+    [Tooltip("This will increase values over time when the player reaches this score")]
     public float DifficultyEveryScore = 5000;
     public float DifficultyIncrement = 1;
     public PlayerBase Player;
@@ -15,18 +17,23 @@ public class IncrementalSpawner : SpawnerBase
 
     public override void Start()
     {
-        nextDifficulty = DifficultyEveryScore;
+        nextDifficulty = DifficultyEveryScore + StartSpawningAt;
         base.Start();
     }
 
-    protected void ShouldIncreaseDifficulty()
+    private void ShouldIncreaseDifficulty()
     {
         if (Player.Score > nextDifficulty)
         {
-            this.MaxSpeed += DifficultyIncrement;
-            this.MinSpeed += DifficultyIncrement;
-            nextDifficulty += DifficultyEveryScore;
+            IncreaseDifficulty();
         }
+    }
+
+    protected virtual void IncreaseDifficulty()
+    {
+        this.MaxSpeed += DifficultyIncrement;
+        this.MinSpeed += DifficultyIncrement;
+        nextDifficulty += DifficultyEveryScore;
     }
 
     protected override GameObject SpawnObject(GameObject prefab)

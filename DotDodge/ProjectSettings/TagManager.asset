@@ -9,6 +9,7 @@ TagManager:
   - Tree
   - Powerup
   - EnemyBullet
+  - PointsText
   layers:
   - Default
   - TransparentFX
