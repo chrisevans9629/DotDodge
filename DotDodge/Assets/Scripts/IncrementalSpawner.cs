@@ -33,6 +33,7 @@ public class IncrementalSpawner : SpawnerBase
     {
         this.MaxSpeed += DifficultyIncrement;
         this.MinSpeed += DifficultyIncrement;
+        
         nextDifficulty += DifficultyEveryScore;
     }
 
