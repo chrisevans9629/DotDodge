@@ -87,7 +87,7 @@ namespace Assets.Scripts
                     player.FireRateSeconds *= PowerupValue;
                     break;
                 case PowerupType.IncreaseBulletCount:
-                    player.BulletCount++;
+                    player.AddBullet();
                     break;
                 case PowerupType.AddShield:
                     player.AddHealth();

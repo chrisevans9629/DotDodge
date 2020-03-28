@@ -28,6 +28,7 @@ public abstract class PlayerBase : MonoBehaviour
     public SpriteRenderer sprite;
     public Healthbar Healthbar;
     public StressReceiver StressReceiver;
+    public int MaxBullets = 3;
     private int _shieldCount;
     //public int ShieldCount
     //{
@@ -234,6 +235,14 @@ public abstract class PlayerBase : MonoBehaviour
         {
             Score++;
             text.text = "Score: " + Score;
+        }
+    }
+
+    public void AddBullet()
+    {
+        if (BulletCount < MaxBullets)
+        {
+            BulletCount++;
         }
     }
 }

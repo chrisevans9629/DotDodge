@@ -1701,6 +1701,7 @@ GameObject:
   - component: {fileID: 694323163}
   - component: {fileID: 694323165}
   - component: {fileID: 694323164}
+  - component: {fileID: 694323166}
   m_Layer: 0
   m_Name: RawImage
   m_TagString: Untagged
@@ -1760,6 +1761,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694323162}
   m_CullTransparentMesh: 0
+--- !u!114 &694323166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694323162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1e52a17317a234db9b8516e8069981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 0.2
+  Duration: 2
 --- !u!1 &793646421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,28 +3140,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2018372509}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: FadeOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1721361273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3518,7 +3511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef3f38db2a4888449c66bbaa8da7bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2018372511}
 --- !u!114 &1949095301 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1949095301, guid: 64fac4e469a33a54d9b80a995f623f68,

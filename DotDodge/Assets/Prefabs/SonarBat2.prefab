@@ -48,8 +48,8 @@ MonoBehaviour:
   MinY: 0
   MaxSeconds: 2
   MinSeconds: 1
-  MinSpeed: 3
-  MaxSpeed: 3
+  MinSpeed: 6
+  MaxSpeed: 6
   ObjectToSpawn: {fileID: 3670742302083474034, guid: bda310062bae70f4088bc2556c36dc25,
     type: 3}
   IsGlobal: 1
@@ -148,6 +148,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   HitSound: {fileID: 6219940291213208032}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
 --- !u!50 &1598389117254684001
 Rigidbody2D:
   serializedVersion: 4
