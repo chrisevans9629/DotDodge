@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class RestartGame : MonoBehaviour
@@ -13,6 +14,7 @@ public class RestartGame : MonoBehaviour
     private Vector3 playerStart;
     public GameObject ResumeButton;
     public MainMenu MainMenu;
+    public UnityEvent GameRestarted;
     void Start()
     {
         playerStart = Player.transform.position;
@@ -92,6 +94,7 @@ public class RestartGame : MonoBehaviour
 
         //MainMenu.text.gameObject.SetActive(false);
         MainMenu.UpdateHighScoreText();
+        GameRestarted.Invoke();
     }
 
     public void ReloadScene()

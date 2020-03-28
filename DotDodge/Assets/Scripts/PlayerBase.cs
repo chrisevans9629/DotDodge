@@ -17,6 +17,7 @@ public abstract class PlayerBase : MonoBehaviour
     public GameObject FirePosition;
     public float FireRateSeconds;
     public UnityEvent PlayerDied;
+    public UnityEvent PlayerDying;
     public GameObject Bullet;
     public bool GameIsRunning = true;
     private PlayerInputActions2 input;
@@ -123,6 +124,11 @@ public abstract class PlayerBase : MonoBehaviour
                         .setOnComplete(() => PlayerDied.Invoke());
                     LeanTween.value(this.gameObject, f => Time.timeScale = f, 1f, 0.3f, 1f);
                 }
+                else
+                {
+                    PlayerDied.Invoke();
+                }
+                PlayerDying.Invoke();
             }
             else
             {
