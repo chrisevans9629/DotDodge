@@ -178,75 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &135569728
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418433, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 899602797403418438, guid: 57bafb1282cfc784d9076279c8a022a0,
-        type: 3}
-      propertyPath: m_Name
-      value: SonarBat
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 57bafb1282cfc784d9076279c8a022a0, type: 3}
 --- !u!1 &265941384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1352,7 @@ PrefabInstance:
     - target: {fileID: 1778325566999121950, guid: 64fac4e469a33a54d9b80a995f623f68,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1778325566999121950, guid: 64fac4e469a33a54d9b80a995f623f68,
         type: 3}
@@ -2284,7 +2215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374090232
 GameObject:
@@ -3134,6 +3065,8 @@ MonoBehaviour:
   MaxSpeed: 6
   ObjectToSpawn: {fileID: 2521087961912598707, guid: d8669006f9f0e5045828e1212408efae,
     type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 0
   DifficultyEveryScore: 1000
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
@@ -3200,6 +3133,8 @@ MonoBehaviour:
   MaxSpeed: 2
   ObjectToSpawn: {fileID: 226643229404061761, guid: 7ce5888a5d25aa945933997a8a8994e6,
     type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 0
   DifficultyEveryScore: 1000
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
@@ -3218,12 +3153,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxY: 4.69
   MinY: -4.42
-  MaxSeconds: 2
-  MinSeconds: 2
+  MaxSeconds: 15
+  MinSeconds: 5
   MinSpeed: 2
-  MaxSpeed: 3
-  ObjectToSpawn: {fileID: 899602797403418438, guid: 57bafb1282cfc784d9076279c8a022a0,
+  MaxSpeed: 4
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: c5a08b782efdd144f9e06941bcc25b43,
     type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 10000
   DifficultyEveryScore: 1000
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
@@ -3327,6 +3264,7 @@ MonoBehaviour:
   MaxSpeed: 6
   ObjectToSpawn: {fileID: 9033935133280420689, guid: 3f25f11ed8b190744ae41ea34dd69fd3,
     type: 3}
+  IsGlobal: 0
   Tree: {fileID: 9033935133280420689, guid: 3f25f11ed8b190744ae41ea34dd69fd3, type: 3}
   MaxSize: 0.5
   MinSize: 0.05

@@ -38,6 +38,10 @@ public abstract class PlayerBase : MonoBehaviour
     //}
     public void AddHealth()
     {
+        if (_shieldCount >= 3)
+        {
+            return;
+        }
         _shieldCount++;
         if (Healthbar != null)
         {

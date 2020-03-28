@@ -20,6 +20,8 @@ public class TreeParalax : SpawnerBase
     protected override GameObject SpawnObject(GameObject prefab)
     {
         var result = base.SpawnObject(prefab);
+        if (result == null)
+            return null;
         var speed = result.GetComponent<ISpeed>();
         result.transform.localScale = Vector3.one * Random.Range(MinSize,MaxSize);
 

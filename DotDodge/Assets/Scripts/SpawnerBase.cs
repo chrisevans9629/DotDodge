@@ -10,7 +10,7 @@ public class SpawnerBase : MonoBehaviour
     public float MinSpeed;
     public float MaxSpeed;
     public GameObject ObjectToSpawn;
-
+    public bool IsGlobal = false;
 
     public virtual void Start()
     {
@@ -43,8 +43,15 @@ public class SpawnerBase : MonoBehaviour
     {
         var position = transform.position;
         position.y = Random.Range(MinY, MaxY);
-
-        var result = Instantiate(prefab, position, Quaternion.identity, transform);
+        GameObject result;
+        if (!IsGlobal)
+        {
+            result = Instantiate(prefab, position, Quaternion.identity, transform);
+        }
+        else
+        {
+            result = Instantiate(prefab, transform.position, Quaternion.identity);
+        }
         var speed = result.GetComponent<ISpeed>();
         if (speed != null)
             speed.SpeedValue = Random.Range(MinSpeed, MaxSpeed);

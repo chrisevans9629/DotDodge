@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -72,7 +73,11 @@ public class RestartGame : MonoBehaviour
         {
             p.rb.velocity = Vector2.zero;
         }
-        
+
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+        {
+            Destroy(o);
+        }
         foreach (Transform children in Spawner.transform)
         {
             Destroy(children.gameObject);

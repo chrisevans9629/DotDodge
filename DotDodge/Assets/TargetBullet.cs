@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetBullet : MonoBehaviour, ISpeed
 {
     private GameObject Player;
-
     public float _speedValue;
 
     // Start is called before the first frame update
@@ -22,6 +21,7 @@ public class TargetBullet : MonoBehaviour, ISpeed
     // Update is called once per frame
     void Update()
     {
+       
         transform.position += transform.up * SpeedValue * Time.deltaTime;
     }
 
