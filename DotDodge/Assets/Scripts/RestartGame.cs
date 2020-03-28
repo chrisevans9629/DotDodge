@@ -83,6 +83,12 @@ public class RestartGame : MonoBehaviour
             Destroy(children.gameObject);
             //Destroy(children);
         }
+
+        foreach (var o in GameObject.FindGameObjectsWithTag("PointsText"))
+        {
+            Destroy(o);
+        }
+
         MainMenu.text.gameObject.SetActive(false);
         MainMenu.UpdateHighScoreText();
     }

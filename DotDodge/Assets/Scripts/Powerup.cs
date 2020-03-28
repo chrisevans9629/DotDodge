@@ -73,8 +73,11 @@ namespace Assets.Scripts
             AddFireRate(collision.gameObject);
         }
 
+        private bool hasBeenUsed = false;
         private void AddFireRate(GameObject collision)
         {
+            if(hasBeenUsed)
+                return;
             if (!collision.gameObject.CompareTag("Player")) return;
             var player = collision.gameObject.GetComponent<PlayerBase>();
             if (player == null) return;
@@ -90,6 +93,8 @@ namespace Assets.Scripts
                     player.AddHealth();
                     break;
             }
+
+            hasBeenUsed = true;
             Impact();
         }
         //private void OnCollisionEnter2D(Collision2D collision)

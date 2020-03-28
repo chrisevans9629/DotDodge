@@ -3160,7 +3160,7 @@ MonoBehaviour:
   ObjectToSpawn: {fileID: 2521087961912598707, guid: c5a08b782efdd144f9e06941bcc25b43,
     type: 3}
   IsGlobal: 0
-  StartSpawningAt: 10000
+  StartSpawningAt: 6000
   DifficultyEveryScore: 1000
   DifficultyIncrement: 0.25
   Player: {fileID: 1949095301}
