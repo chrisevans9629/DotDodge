@@ -18,8 +18,9 @@ namespace Assets.Scripts
 
             LeanTween.scale(text.gameObject, Vector3.one, InDuration).setOnComplete(() =>
             {
-                LeanTween.scale(text.gameObject, Vector3.zero, OutDuration).setDestroyOnComplete(true);
+                LeanTween.scale(text.gameObject, Vector3.zero, OutDuration);
             });
+            Destroy(text.gameObject, InDuration + OutDuration);
         }
 
     }

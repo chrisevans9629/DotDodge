@@ -6,7 +6,7 @@ namespace Assets.Scripts
 {
     public class MainMenu : MonoBehaviour
     {
-        public Text text;
+        //public Text text;
         void Start()
         {
             UpdateHighScoreText();
@@ -16,7 +16,14 @@ namespace Assets.Scripts
         {
             if (PlayerPrefs.HasKey("score"))
             {
-                text.text = "Highscore: " + PlayerPrefs.GetFloat("score", 0).ToString(CultureInfo.InvariantCulture);
+                var texts = GameObject.FindGameObjectsWithTag("HighscoreText");
+                foreach (var text in texts)
+                {
+                    if (text != null)
+                    {
+                        text.GetComponent<Text>().text = "Highscore: " + PlayerPrefs.GetFloat("score", 0).ToString(CultureInfo.InvariantCulture);
+                    }
+                }
             }
         }
     }

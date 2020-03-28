@@ -22,12 +22,11 @@ public class RestartGame : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseUI.SetActive(false);
-        MainMenu.text.gameObject.SetActive(false);
+        //MainMenu.text.gameObject.SetActive(false);
     }
 
     public void Pause()
     {
-        MainMenu.UpdateHighScoreText();
         Time.timeScale = 0;
         PauseUI.SetActive(true);
         if (Player.IsDead)
@@ -38,7 +37,9 @@ public class RestartGame : MonoBehaviour
         {
             ResumeButton.SetActive(true);
         }
-        MainMenu.text.gameObject.SetActive(true);
+        MainMenu.UpdateHighScoreText();
+
+        //MainMenu.text.gameObject.SetActive(true);
     }
 
     public void GiveUp()
@@ -89,7 +90,7 @@ public class RestartGame : MonoBehaviour
             Destroy(o);
         }
 
-        MainMenu.text.gameObject.SetActive(false);
+        //MainMenu.text.gameObject.SetActive(false);
         MainMenu.UpdateHighScoreText();
     }
 
