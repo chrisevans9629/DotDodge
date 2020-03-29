@@ -46,7 +46,10 @@ public class RestartGame : MonoBehaviour
 
     public void GiveUp()
     {
-        Application.Quit();
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
+        {
+            Application.Quit();
+        }
     }
 
     public void Restart()
