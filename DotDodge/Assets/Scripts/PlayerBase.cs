@@ -68,7 +68,7 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
-  
+
 
     // Start is called before the first frame update
     public void Awake()
@@ -82,7 +82,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         StartCoroutine(Fire());
         Time.timeScale = 1;
-       // sprite = GetComponent<SpriteRenderer>();
+        // sprite = GetComponent<SpriteRenderer>();
     }
 
     public void OnDisable()
@@ -117,12 +117,15 @@ public abstract class PlayerBase : MonoBehaviour
             if (this._shieldCount <= 0)
             {
                 IsDead = true;
+                if (!IsDead)
+                    return;
                 UpdateHighscore();
                 if (sprite != null)
                 {
-                    LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f)
-                        .setOnComplete(() => PlayerDied.Invoke());
-                    LeanTween.value(this.gameObject, f => Time.timeScale = f, 1f, 0.3f, 1f);
+                    LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f);
+                    Time.timeScale = 0.5f;
+                    StartCoroutine(DeathAnimation());
+                  
                 }
                 else
                 {
@@ -144,15 +147,12 @@ public abstract class PlayerBase : MonoBehaviour
             {
                 StressReceiver.InduceStress(0.5f);
             }
-            // StartCoroutine(DeathAnimation());
-            //PlayerDied.Invoke();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
     IEnumerator DeathAnimation()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         PlayerDied.Invoke();
     }
     private void UpdateHighscore()
@@ -215,7 +215,7 @@ public abstract class PlayerBase : MonoBehaviour
                     angles.Clear();
                     for (int i = 0; i < BulletCount; i++)
                     {
-                        angles.Add(angleOffset * (i+1));
+                        angles.Add(angleOffset * (i + 1));
                     }
 
                     var medianOffset = GetMedian(angles.ToArray());
@@ -233,10 +233,6 @@ public abstract class PlayerBase : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        //if (input.Player.Jump.ReadValue<float>() > 0)
-        //{
-        //}
-
         if (Time.timeScale > 0 && GameIsRunning && !IsDead)
         {
             Score++;
