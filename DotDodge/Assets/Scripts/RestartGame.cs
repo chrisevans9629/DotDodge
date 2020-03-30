@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RestartGame : MonoBehaviour
 {
@@ -13,49 +16,22 @@ public class RestartGame : MonoBehaviour
     public GameObject PauseUI;
     private Vector3 playerStart;
     public GameObject ResumeButton;
+    public Button ContinueButton;
     public MainMenu MainMenu;
     public UnityEvent GameRestarted;
+    int gameCount = 1;
+    public int ShowAdEveryXGame = 5;
+    public bool CanContinue = true;
     void Start()
     {
+        //Advertisement.Initialize("3532261", TestMode);
         playerStart = Player.transform.position;
     }
 
-    public void Resume()
+    public void Continue()
     {
+        CanContinue = false;
         Time.timeScale = 1;
-        PauseUI.SetActive(false);
-        //MainMenu.text.gameObject.SetActive(false);
-    }
-
-    public void Pause()
-    {
-        Time.timeScale = 0;
-        PauseUI.SetActive(true);
-        if (Player.IsDead)
-        {
-            ResumeButton.SetActive(false);
-        }
-        else
-        {
-            ResumeButton.SetActive(true);
-        }
-        MainMenu.UpdateHighScoreText();
-
-        //MainMenu.text.gameObject.SetActive(true);
-    }
-
-    public void GiveUp()
-    {
-        if (Application.platform != RuntimePlatform.WebGLPlayer)
-        {
-            Application.Quit();
-        }
-    }
-
-    public void Restart()
-    {
-        Time.timeScale = 1;
-
         LeanTween.value(this.gameObject, v => Player.transform.position = v, Player.transform.position, playerStart, 0.5f)
             .setOnComplete(() =>
             {
@@ -63,15 +39,10 @@ public class RestartGame : MonoBehaviour
                 Player.IsDead = false;
             });
         PauseUI.SetActive(false);
-
-        //Player.transform.position = playerStart;
-        Player.Score = 0;
-        
         if (Player.sprite != null)
         {
             Player.sprite.color = Color.white;
         }
-
         Player.FireRateSeconds = 1;
         Player.BulletCount = 1;
         Player.ResetHealth();
@@ -98,6 +69,61 @@ public class RestartGame : MonoBehaviour
         //MainMenu.text.gameObject.SetActive(false);
         MainMenu.UpdateHighScoreText();
         GameRestarted.Invoke();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        PauseUI.SetActive(false);
+        //MainMenu.text.gameObject.SetActive(false);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        PauseUI.SetActive(true);
+        if (Player.IsDead)
+        {
+            ResumeButton.SetActive(false);
+            if (CanContinue)
+            {
+                ContinueButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                ContinueButton.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            ResumeButton.SetActive(true);
+            ContinueButton.gameObject.SetActive(false);
+        }
+        MainMenu.UpdateHighScoreText();
+        if (gameCount % ShowAdEveryXGame == 0)
+        {
+            if (Advertisement.IsReady("RestartVideo"))
+            {
+                Advertisement.Show("RestartVideo");
+            }
+        }
+        //MainMenu.text.gameObject.SetActive(true);
+    }
+
+    public void GiveUp()
+    {
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
+        {
+            Application.Quit();
+        }
+    }
+
+    public void Restart()
+    {
+        gameCount++;
+        Player.Score = 0;
+        Continue();
+        CanContinue = true;
     }
 
     public void ReloadScene()
