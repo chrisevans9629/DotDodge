@@ -10,7 +10,9 @@ public enum ShopAction
     BulletCount,
     BulletSpeed,
     BulletMax,
-    BulletRate
+    BulletRate,
+    MaxHealth,
+    StartHealth
 }
 
 public class ShopButton : MonoBehaviour
@@ -66,7 +68,15 @@ public class ShopButton : MonoBehaviour
         }
         else if (Action == ShopAction.BulletMax)
         {
-            cntText.text = $"Max Bullets {LevelManager.shopSystem.MaxBullets}";
+            cntText.text = $"Max Bullets: {LevelManager.shopSystem.MaxBullets}";
+        }
+        else if (Action == ShopAction.MaxHealth)
+        {
+            cntText.text = $"Max Health: {LevelManager.shopSystem.MaxHealth}";
+        }
+        else if (Action == ShopAction.StartHealth)
+        {
+            cntText.text = $"Start Health: {LevelManager.shopSystem.StartingHealth}";
         }
         else
         {
@@ -82,30 +92,37 @@ public class ShopButton : MonoBehaviour
         {
             player.BulletCount++;
             LevelManager.shopSystem.BulletCount++;
-            UpdateManager();
         }
         else if (Action == ShopAction.BulletSpeed)
         {
             player.BulletSpeed++;
             LevelManager.shopSystem.BulletSpeed++;
-            UpdateManager();
         }
         else if (Action == ShopAction.BulletRate)
         {
             player.FireRateSeconds *= 0.9f;
             LevelManager.shopSystem.BulletRate = player.FireRateSeconds;
-            UpdateManager();
         }
         else if (Action == ShopAction.BulletMax)
         {
             player.MaxBullets++;
             LevelManager.shopSystem.MaxBullets = player.MaxBullets;
-            UpdateManager();
+        }
+        else if (Action == ShopAction.MaxHealth)
+        {
+            player.MaxHealth++;
+            LevelManager.shopSystem.MaxHealth = player.MaxHealth;
+        }
+        else if (Action == ShopAction.StartHealth)
+        {
+            player.Health++;
+            LevelManager.shopSystem.StartingHealth = player.Health;
         }
         else
         {
             throw new NotImplementedException();
         }
+        UpdateManager();
         UpdateButton();
     }
 

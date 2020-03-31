@@ -40,10 +40,11 @@ public abstract class PlayerBase : MonoBehaviour
     public Healthbar Healthbar;
     public StressReceiver StressReceiver;
     public int MaxBullets = 3;
-    private int _shieldCount;
+    public int Health;
     public float BulletSpeed = 6;
     public event EventHandler<int> ScoreIncremented;
 
+    public int MaxHealth = 3;
     //public int ShieldCount
     //{
     //    get => _shieldCount;
@@ -54,11 +55,11 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void AddHealth()
     {
-        if (_shieldCount >= 3)
+        if (Health >= MaxHealth)
         {
             return;
         }
-        _shieldCount++;
+        Health++;
         if (Healthbar != null)
         {
             Healthbar.AddHealth();
@@ -67,7 +68,7 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void ResetHealth()
     {
-        _shieldCount = 0;
+        Health = 0;
         if (Healthbar != null)
         {
             Healthbar.ResetHealth();
@@ -75,7 +76,7 @@ public abstract class PlayerBase : MonoBehaviour
     }
     public void RemoveHealth()
     {
-        _shieldCount--;
+        Health--;
         if (Healthbar != null)
         {
             Healthbar.RemoveHealth();
@@ -128,7 +129,7 @@ public abstract class PlayerBase : MonoBehaviour
             return;
         if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup") && !IsDead)
         {
-            if (this._shieldCount <= 0)
+            if (this.Health <= 0)
             {
                 IsDead = true;
                 if (!IsDead)

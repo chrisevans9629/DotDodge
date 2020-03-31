@@ -62,6 +62,13 @@ namespace Assets.Scripts
             playerBase.BulletSpeed = shopSystem.BulletSpeed;
             playerBase.FireRateSeconds = shopSystem.BulletRate;
             playerBase.MaxBullets = shopSystem.MaxBullets;
+            playerBase.MaxHealth = shopSystem.MaxHealth;
+            playerBase.ResetHealth();
+           // playerBase.Health = shopSystem.StartingHealth;
+            for (int i = 0; i < shopSystem.StartingHealth; i++)
+            {
+                playerBase.AddHealth();
+            }
         }
 
         public void UpdateText()
