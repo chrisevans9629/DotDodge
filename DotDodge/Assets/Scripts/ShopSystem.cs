@@ -18,7 +18,11 @@ namespace Assets.Scripts
 
         public static ShopSystem Load()
         {
-            return JsonUtility.FromJson<ShopSystem>(PlayerPrefs.GetString("Shop"));
+            if (PlayerPrefs.HasKey("Shop"))
+            {
+                return JsonUtility.FromJson<ShopSystem>(PlayerPrefs.GetString("Shop"));
+            }
+            return new ShopSystem();
         }
     }
 }

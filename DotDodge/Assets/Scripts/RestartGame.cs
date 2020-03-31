@@ -22,8 +22,10 @@ public class RestartGame : MonoBehaviour
     int gameCount = 1;
     public int ShowAdEveryXGame = 5;
     public bool CanContinue = true;
+    private LevelManager levelManager;
     void Start()
     {
+        levelManager = GetComponent<LevelManager>();
         //Advertisement.Initialize("3532261", TestMode);
         playerStart = Player.transform.position;
     }
@@ -44,7 +46,7 @@ public class RestartGame : MonoBehaviour
             Player.sprite.color = Color.white;
         }
         Player.FireRateSeconds = 1;
-        Player.BulletCount = 1;
+        Player.BulletCount = levelManager.shopSystem.BulletCount;
         Player.ResetHealth();
         if (Player is Player2D p)
         {

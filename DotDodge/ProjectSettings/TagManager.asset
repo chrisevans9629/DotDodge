@@ -11,6 +11,7 @@ TagManager:
   - EnemyBullet
   - PointsText
   - HighscoreText
+  - GameManager
   layers:
   - Default
   - TransparentFX
