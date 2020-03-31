@@ -11,7 +11,17 @@ using UnityEngine.UI;
 public abstract class PlayerBase : MonoBehaviour
 {
     public string[] IgnoreTags;
-    public int Score;
+    private int _score;
+    public int Score
+    {
+        get => _score;
+        set
+        {
+            OnScoreIncremented(value-_score);
+            _score = value;
+        }
+    }
+
     public Text text;
     public float Jump;
     public GameObject FirePosition;
@@ -32,7 +42,7 @@ public abstract class PlayerBase : MonoBehaviour
     public int MaxBullets = 3;
     private int _shieldCount;
 
-    public event EventHandler ScoreIncremented;
+    public event EventHandler<int> ScoreIncremented;
 
     //public int ShieldCount
     //{
@@ -241,7 +251,7 @@ public abstract class PlayerBase : MonoBehaviour
         {
             Score++;
             text.text = "Score: " + Score;
-            OnScoreIncremented();
+            //OnScoreIncremented(1);
         }
     }
 
@@ -253,8 +263,8 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
-    protected virtual void OnScoreIncremented()
+    protected virtual void OnScoreIncremented(int e)
     {
-        ScoreIncremented?.Invoke(this, EventArgs.Empty);
+        ScoreIncremented?.Invoke(this, e);
     }
 }

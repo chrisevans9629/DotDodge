@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -8,7 +9,7 @@ namespace Assets.Scripts
         public int Level = 1;
         public int Experience;
         public int ExperienceToNextLevel = 1000;
-
+        public event EventHandler LevelChanged;
         public LevelSystem()
         {
             
@@ -33,11 +34,17 @@ namespace Assets.Scripts
             if (Experience >= ExperienceToNextLevel)
             {
                 Experience -= ExperienceToNextLevel;
-                ExperienceToNextLevel = (int)(ExperienceToNextLevel * 1.5f);
+                ExperienceToNextLevel = (int)(ExperienceToNextLevel * 1.2f);
                 Level++;
+                OnLevelChanged();
             }
         }
 
         public float ExperienceNormal => (float)Experience  / ExperienceToNextLevel;
+
+        protected virtual void OnLevelChanged()
+        {
+            LevelChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

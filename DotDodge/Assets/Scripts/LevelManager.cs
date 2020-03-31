@@ -13,15 +13,27 @@ namespace Assets.Scripts
         void Start()
         {
             playerBase = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
-            levelSystem = LevelSystem.Load();
+            levelSystem = new LevelSystem();//LevelSystem.Load();
+            levelSystem.LevelChanged += LevelSystemOnLevelChanged;
             UpdateUi();
             playerBase.ScoreIncremented += PlayerBaseOnScoreIncremented;
         }
 
-        private void PlayerBaseOnScoreIncremented(object sender, EventArgs e)
+        private void LevelSystemOnLevelChanged(object sender, EventArgs e)
         {
-            levelSystem.AddExperience(1);
-            UpdateUi();
+            LeanTween.scale(text.gameObject, Vector3.one * 1.5f, 0.2f).setOnComplete(() =>
+                {
+                    LeanTween.scale(text.gameObject, Vector3.one, 0.2f);
+                });
+        }
+
+        private void PlayerBaseOnScoreIncremented(object sender, int e)
+        {
+            if (e > 0)
+            {
+                levelSystem.AddExperience(e);
+                UpdateUi();
+            }
         }
 
         public void UpdateLevel()
