@@ -13,7 +13,7 @@ namespace Assets.Scripts
         void Start()
         {
             playerBase = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
-            levelSystem = new LevelSystem();//LevelSystem.Load();
+            levelSystem = LevelSystem.Load();
             levelSystem.LevelChanged += LevelSystemOnLevelChanged;
             UpdateUi();
             playerBase.ScoreIncremented += PlayerBaseOnScoreIncremented;
