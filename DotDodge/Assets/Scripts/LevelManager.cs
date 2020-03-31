@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public Text text;
         private PlayerBase playerBase;
         public Text PointsAvailableText;
+        
         public int PointsAvailable => levelSystem.Level - shopSystem.LevelsUsed;
         public bool TestSystem = true;
         void Awake()
@@ -42,8 +43,25 @@ namespace Assets.Scripts
             levelSystem.LevelChanged += LevelSystemOnLevelChanged;
             UpdateUi();
             playerBase.ScoreIncremented += PlayerBaseOnScoreIncremented;
-            playerBase.BulletCount = shopSystem.BulletCount;
+            SetupPlayerLevel();
             UpdateText();
+        }
+
+        public void ResetProgress()
+        {
+            levelSystem = new LevelSystem();
+            levelSystem.Save();
+            shopSystem = new ShopSystem();
+            shopSystem.Save();
+            UpdateUi();
+            UpdateText();
+        }
+        public void SetupPlayerLevel()
+        {
+            playerBase.BulletCount = shopSystem.BulletCount;
+            playerBase.BulletSpeed = shopSystem.BulletSpeed;
+            playerBase.FireRateSeconds = shopSystem.BulletRate;
+            playerBase.MaxBullets = shopSystem.MaxBullets;
         }
 
         public void UpdateText()

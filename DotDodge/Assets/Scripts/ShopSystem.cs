@@ -10,6 +10,8 @@ namespace Assets.Scripts
         public int StartingHealth = 0;
         public int MaxBullets = 5;
         public int MaxHealth = 3;
+        public float BulletSpeed = 6;
+        public float BulletRate = 1;
 
         public void Save()
         {

@@ -41,7 +41,7 @@ public abstract class PlayerBase : MonoBehaviour
     public StressReceiver StressReceiver;
     public int MaxBullets = 3;
     private int _shieldCount;
-
+    public float BulletSpeed = 6;
     public event EventHandler<int> ScoreIncremented;
 
     //public int ShieldCount
@@ -212,6 +212,7 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
     private List<float> angles = new List<float>();
+    private float previousSpeed;
     IEnumerator Fire()
     {
         while (true)
@@ -219,6 +220,11 @@ public abstract class PlayerBase : MonoBehaviour
             yield return new WaitForSeconds(FireRateSeconds);
             if (GameIsRunning)
             {
+                if (previousSpeed != BulletSpeed)
+                {
+                    previousSpeed = BulletSpeed;
+                    Bullet.GetComponent<Bullet>().Speed = BulletSpeed;
+                }
                 if (BulletCount == 1)
                 {
                     Instantiate(Bullet, FirePosition.transform.position, Quaternion.identity);

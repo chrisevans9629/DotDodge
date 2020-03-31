@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
@@ -8,7 +9,8 @@ public enum ShopAction
 {
     BulletCount,
     BulletSpeed,
-    BulletMax
+    BulletMax,
+    BulletRate
 }
 
 public class ShopButton : MonoBehaviour
@@ -54,6 +56,22 @@ public class ShopButton : MonoBehaviour
         {
             cntText.text = $"Bullets: {LevelManager.shopSystem.BulletCount}";
         }
+        else if (Action == ShopAction.BulletSpeed)
+        {
+            cntText.text = $"Bullet Speed: {LevelManager.shopSystem.BulletSpeed}";
+        }
+        else if (Action == ShopAction.BulletRate)
+        {
+            cntText.text = $"Fire Rate: {LevelManager.shopSystem.BulletRate}";
+        }
+        else if (Action == ShopAction.BulletMax)
+        {
+            cntText.text = $"Max Bullets {LevelManager.shopSystem.MaxBullets}";
+        }
+        else
+        {
+            throw new NotImplementedException();
+        }
 
         costText.text = $"Cost: {Cost}";
     }
@@ -64,16 +82,43 @@ public class ShopButton : MonoBehaviour
         {
             player.BulletCount++;
             LevelManager.shopSystem.BulletCount++;
-            LevelManager.shopSystem.LevelsUsed += Cost;
-            LevelManager.shopSystem.Save();
-            LevelManager.UpdateText();
+            UpdateManager();
+        }
+        else if (Action == ShopAction.BulletSpeed)
+        {
+            player.BulletSpeed++;
+            LevelManager.shopSystem.BulletSpeed++;
+            UpdateManager();
+        }
+        else if (Action == ShopAction.BulletRate)
+        {
+            player.FireRateSeconds *= 0.9f;
+            LevelManager.shopSystem.BulletRate = player.FireRateSeconds;
+            UpdateManager();
+        }
+        else if (Action == ShopAction.BulletMax)
+        {
+            player.MaxBullets++;
+            LevelManager.shopSystem.MaxBullets = player.MaxBullets;
+            UpdateManager();
+        }
+        else
+        {
+            throw new NotImplementedException();
         }
         UpdateButton();
+    }
+
+    private void UpdateManager()
+    {
+        LevelManager.shopSystem.LevelsUsed += Cost;
+        LevelManager.shopSystem.Save();
+        LevelManager.UpdateText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
