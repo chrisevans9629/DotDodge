@@ -6,14 +6,17 @@ namespace Assets.Scripts
 {
     public class LevelManager : MonoBehaviour
     {
+        private ShopSystem shopSystem;
         private LevelSystem levelSystem;
         public Image levelfill;
         public Text text;
         private PlayerBase playerBase;
+        public int PointsAvailable => levelSystem.Level - shopSystem.LevelsUsed;
         void Start()
         {
             playerBase = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
             levelSystem = LevelSystem.Load();
+            shopSystem = ShopSystem.Load();
             levelSystem.LevelChanged += LevelSystemOnLevelChanged;
             UpdateUi();
             playerBase.ScoreIncremented += PlayerBaseOnScoreIncremented;
