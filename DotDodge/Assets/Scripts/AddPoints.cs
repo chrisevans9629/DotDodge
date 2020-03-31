@@ -5,13 +5,13 @@ using UnityEngine.Events;
 namespace Assets.Scripts
 {
     [Serializable]
-    public class PointEvent : UnityEvent<float>
+    public class PointEvent : UnityEvent<int>
     {
 
     }
     public class AddPoints : MonoBehaviour
     {
-        public float PointValue;
+        public int PointValue;
         public PlayerBase Player;
         public PointEvent GotPoints;
 

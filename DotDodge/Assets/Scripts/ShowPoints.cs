@@ -9,7 +9,7 @@ namespace Assets.Scripts
         public Vector2 Position;
         public float InDuration;
         public float OutDuration;
-        public void OnPointScored(float value)
+        public void OnPointScored(int value)
         {
             var text = Instantiate(TextPrefab, Position, Quaternion.identity, transform);
 

@@ -84,6 +84,13 @@ public class RestartGame : MonoBehaviour
         PauseUI.SetActive(true);
         if (Player.IsDead)
         {
+            if (gameCount % ShowAdEveryXGame == 0)
+            {
+                if (Advertisement.IsReady("RestartVideo"))
+                {
+                    Advertisement.Show("RestartVideo");
+                }
+            }
             ResumeButton.SetActive(false);
             if (CanContinue)
             {
@@ -100,13 +107,7 @@ public class RestartGame : MonoBehaviour
             ContinueButton.gameObject.SetActive(false);
         }
         MainMenu.UpdateHighScoreText();
-        if (gameCount % ShowAdEveryXGame == 0)
-        {
-            if (Advertisement.IsReady("RestartVideo"))
-            {
-                Advertisement.Show("RestartVideo");
-            }
-        }
+     
         //MainMenu.text.gameObject.SetActive(true);
     }
 
