@@ -6,9 +6,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+public interface IEnemy
+{
+    UnityEvent HitEvent { get; }
+    int Health { get; set; }
+    Color Color { get; set; }
+}
 
 
-public class Enemy : MoveableObject
+public class Enemy : MoveableObject, IEnemy
 {
     public ParticleSystem ParticleSystem;
     private Rigidbody rb;
@@ -21,6 +27,12 @@ public class Enemy : MoveableObject
     public int Health;
 
     private List<SpriteRenderer> renders;
+
+    UnityEvent IEnemy.HitEvent => HitEvent;
+
+    int IEnemy.Health { get => Health; set => Health = value; }
+    Color IEnemy.Color { get => Color; set => Color = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +44,7 @@ public class Enemy : MoveableObject
         {
             renders.Add(current);
         }
-
-        //Health = Random.Range(0, 2);
-        //if (Health == 1)
-        //{
-            renders.ForEach(p => p.color = Color);
-        //}
+        renders.ForEach(p => p.color = Color);
     }
 
     private void OnTriggerEnter(Collider other)

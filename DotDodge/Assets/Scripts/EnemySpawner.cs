@@ -48,14 +48,10 @@ public class EnemySpawner : IncrementalSpawner
             return null;
         result.transform.rotation = Quaternion.AngleAxis(15, Vector3.forward);
 
-        var enemy = result.GetComponent<Enemy>() ?? result.GetComponentInChildren<Enemy>();
-        if (enemy != null)
-        {
-            enemy.HitEvent.AddListener(() => AddPoints?.AddPointsToPlayer());
-            enemy.Health = Health;
-            enemy.Color = Color;
-
-        }
+        var enemy = (IEnemy)result.GetComponent(typeof(IEnemy)) ?? (IEnemy)result.GetComponentInChildren(typeof(IEnemy));
+        enemy.HitEvent.AddListener(() => AddPoints?.AddPointsToPlayer());
+        enemy.Health = Health;
+        enemy.Color = Color;
 
         var hover = result.GetComponent<Hover>();
         if (hover != null)

@@ -6,16 +6,19 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float Speed;
-    
+
+    public bool ShouldKillEnemy = true;
+
+    public bool ShouldUseUp = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (ShouldKillEnemy && collision.CompareTag("Enemy"))
         {
             //Destroy(other.gameObject);
             Destroy(this.gameObject);
@@ -24,7 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (ShouldKillEnemy && other.CompareTag("Enemy"))
         {
             //Destroy(other.gameObject);
             Destroy(this.gameObject);
@@ -34,6 +37,14 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * Speed * Time.deltaTime;
+        if (!ShouldUseUp)
+        {
+            transform.position += transform.right * Speed * Time.deltaTime;
+
+        }
+        else
+        {
+            transform.position += transform.up * Speed * Time.deltaTime;
+        }
     }
 }
