@@ -36,6 +36,8 @@ public class Enemy : MoveableObject, IEnemy
     // Start is called before the first frame update
     void Start()
     {
+        var s = SoundManager.SoundManagerInstance;
+        s.SoundEffects.Add(HitSound);
         hover = GetComponentInChildren<Hover>();
         rb = GetComponent<Rigidbody>();
         renders = GetComponentsInChildren<SpriteRenderer>().ToList();

@@ -93,7 +93,7 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
     protected abstract void JumpOnPerformed(InputAction.CallbackContext obj);
-    public void Start()
+    public virtual void Start()
     {
         StartCoroutine(Fire());
         Time.timeScale = 1;
