@@ -20,15 +20,16 @@ namespace Assets.Scripts
 
         void MoveDown()
         {
-            if (hover) 
-               current = LeanTween.moveY(gameObject, transform.position.y - Amount, Duration).setEaseInOutQuad().setOnComplete(MoveUp);
+            if (hover)
+                current = LeanTween.moveY(gameObject, transform.position.y - Amount, Duration).setEaseInOutQuad().setOnComplete(MoveUp);
         }
 
         private bool hover = true;
         public void StopHovering()
         {
             hover = false;
-            LeanTween.cancel(current.uniqueId);
+            if (current != null)
+                LeanTween.cancel(current.uniqueId);
         }
     }
 }

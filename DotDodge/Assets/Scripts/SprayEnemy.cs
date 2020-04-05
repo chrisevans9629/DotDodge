@@ -46,9 +46,9 @@ public class SprayEnemy : MonoBehaviour, IEnemy
 
     void MoveToArea()
     {
-        if(isDead)
+        if (isDead)
             return;
-        var pos = new Vector3(Random.Range(MoveArea.xMin, MoveArea.xMax), Random.Range(MoveArea.yMin,MoveArea.yMax));
+        var pos = new Vector3(Random.Range(MoveArea.xMin, MoveArea.xMax), Random.Range(MoveArea.yMin, MoveArea.yMax));
 
         movement = LeanTween.move(gameObject, pos, Speed).setEaseInOutExpo().setOnComplete(Shoot);
     }
@@ -74,9 +74,9 @@ public class SprayEnemy : MonoBehaviour, IEnemy
         while (isShooting && !isDead)
         {
             yield return new WaitForSeconds(FireRate);
-            if(isDead)
+            if (isDead)
                 break;
-            var result =  Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
+            var result = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
             angle += AngleIncrement;
         }
     }
@@ -107,7 +107,8 @@ public class SprayEnemy : MonoBehaviour, IEnemy
             rb2d.bodyType = RigidbodyType2D.Dynamic;
             rb2d.angularVelocity = 90;
         }
-        hover.StopHovering();
+        if (hover != null)
+            hover.StopHovering();
         isDead = true;
         if (movement != null)
         {

@@ -1876,7 +1876,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  ShowAdEveryXGame: 3
+  ShowAdEveryXGame: 5
   CanContinue: 1
 --- !u!4 &366974612
 Transform:
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   RestartGame: {fileID: 366974611}
   ContinueButton: {fileID: 2003502055}
   myPlacementId: ContinueGame
-  TestMode: 1
+  TestMode: 0
 --- !u!114 &366974614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7301,7 +7301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1371.7999, y: -358.8725}
+  m_AnchoredPosition: {x: 1371.7998, y: -358.8725}
   m_SizeDelta: {x: 901.19995, y: 717.745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820835711
@@ -7561,14 +7561,14 @@ MonoBehaviour:
   ObjectToSpawn: {fileID: 2521087961912598707, guid: 8339748016a03664ea7c96417634e07f,
     type: 3}
   IsGlobal: 0
-  StartSpawningAt: 0
+  StartSpawningAt: 30000
   DifficultyEveryScore: 1000
   DifficultyIncrement: 0
   Player: {fileID: 1949095301}
   AddPoints: {fileID: 1823230912}
   Color: {r: 1, g: 1, b: 1, a: 1}
   Health: 10
-  HoverAmount: 0.5
+  HoverAmount: 0
   HoverIncreaseDelta: 0
 --- !u!1 &1843185191
 GameObject:
