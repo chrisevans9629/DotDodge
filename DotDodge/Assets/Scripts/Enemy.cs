@@ -37,7 +37,7 @@ public class Enemy : MoveableObject, IEnemy
     void Start()
     {
         var s = SoundManager.SoundManagerInstance;
-        s.SoundEffects.Add(HitSound);
+        s.Add(HitSound);
         hover = GetComponentInChildren<Hover>();
         rb = GetComponent<Rigidbody>();
         renders = GetComponentsInChildren<SpriteRenderer>().ToList();

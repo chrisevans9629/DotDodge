@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 {
     private SettingSystem settingSystem;
     [HideInInspector]
-    public List<AudioSource> SoundEffects = new List<AudioSource>();
+    private List<AudioSource> SoundEffects = new List<AudioSource>();
 
     public static SoundManager SoundManagerInstance;
     public AudioSource Music;
@@ -32,6 +32,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void Add(AudioSource audioSource)
+    {
+        SoundEffects.Add(audioSource);
+        audioSource.mute = settingSystem.IsSoundMuted;
+    }
     public bool GetSound(SettingsActions action)
     {
         if (action == SettingsActions.Music)

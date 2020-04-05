@@ -10,9 +10,9 @@ public class Player2D : PlayerBase
     {
         var s = SoundManager.SoundManagerInstance;
 
-        s.SoundEffects.Add(jumpSound);
-        s.SoundEffects.Add(base.DamageSound);
-        s.SoundEffects.Add(base.GunSound);
+        s.Add(jumpSound);
+        s.Add(base.DamageSound);
+        s.Add(base.GunSound);
         base.Start();
     }
 
