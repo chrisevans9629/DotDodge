@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4753959927298701279}
   - component: {fileID: 6219940291213208032}
   - component: {fileID: 1524654211304364022}
+  - component: {fileID: 1076925078253871047}
   m_Layer: 0
   m_Name: SonarBat2
   m_TagString: Enemy
@@ -297,6 +298,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Amount: 1
   Duration: 2
+--- !u!114 &1076925078253871047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521087961912598707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3db7ce21d75e64ea2307235e97605b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointValue: 200
 --- !u!1001 &9136640679102645640
 PrefabInstance:
   m_ObjectHideFlags: 0

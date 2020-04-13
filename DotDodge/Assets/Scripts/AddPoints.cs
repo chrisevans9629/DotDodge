@@ -11,7 +11,7 @@ namespace Assets.Scripts
     }
     public class AddPoints : MonoBehaviour
     {
-        public int PointValue;
+        public int PointValue = 100;
         PlayerBase Player;
         private ShowPoints showPoints;
         void Start()

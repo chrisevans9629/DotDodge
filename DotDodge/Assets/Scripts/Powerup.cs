@@ -5,8 +5,10 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(AddPoints))]
     public class Powerup : MoveableObject
     {
+        private AddPoints _addPoints;
         public UnityEvent HitEvent;
         public AudioSource HitSound;
         public float PowerupValue;
@@ -15,6 +17,7 @@ namespace Assets.Scripts
         public PowerupType PowerupType;
         void Start()
         {
+            _addPoints = GetComponent<AddPoints>();
             PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
         }
@@ -42,10 +45,12 @@ namespace Assets.Scripts
                     player.FireRateSeconds *= PowerupValue;
                     break;
                 case PowerupType.IncreaseBulletCount:
-                    player.AddBullet();
+                    if(!player.AddBullet())
+                        _addPoints.AddPointsToPlayer();
                     break;
                 case PowerupType.AddShield:
-                    player.AddHealth();
+                    if(!player.AddHealth())
+                        _addPoints.AddPointsToPlayer();
                     break;
             }
 

@@ -13,9 +13,10 @@ public interface IEnemy
     Color Color { get; set; }
 }
 
-
+[RequireComponent(typeof(AddPoints))]
 public class Enemy : MoveableObject, IEnemy
 {
+    private AddPoints _addPoints;
     public ParticleSystem ParticleSystem;
     private Rigidbody rb;
     public Rigidbody2D rb2d;
@@ -36,6 +37,7 @@ public class Enemy : MoveableObject, IEnemy
     // Start is called before the first frame update
     void Start()
     {
+        _addPoints = GetComponent<AddPoints>();
         var s = SoundManager.SoundManagerInstance;
         s.Add(HitSound);
         hover = GetComponentInChildren<Hover>();
@@ -87,6 +89,7 @@ public class Enemy : MoveableObject, IEnemy
             rb2d.angularVelocity = 90;
         }
         hover.StopHovering();
+        _addPoints.AddPointsToPlayer();
     }
 
 }
