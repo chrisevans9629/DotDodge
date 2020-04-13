@@ -2,47 +2,33 @@
 
 public class IncrementalSpawner : SpawnerBase
 {
-    [Tooltip("this will be added to the difficulty every score")]
     public float StartSpawningAt = 0;
-    [Tooltip("This will increase values over time when the player reaches this score")]
-    public float DifficultyEveryScore = 5000;
-    public float DifficultyIncrement = 1;
-    public PlayerBase Player;
-    private float nextDifficulty;
-    public override void ResetSpawner()
-    {
-        nextDifficulty = 0;
-        base.ResetSpawner();
-    }
+    public float StopSpawningAt = float.MaxValue;
+
+    public int MaxCount = int.MaxValue;
+    int _count = 0;
+    PlayerBase Player;
 
     public override void Start()
     {
-        nextDifficulty = DifficultyEveryScore + StartSpawningAt;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
         base.Start();
     }
 
-    private void ShouldIncreaseDifficulty()
+    public override void ResetSpawner()
     {
-        if (Player.Score > nextDifficulty)
-        {
-            IncreaseDifficulty();
-        }
+        _count = 0;
+        base.ResetSpawner();
     }
 
-    protected virtual void IncreaseDifficulty()
-    {
-        this.MaxSpeed += DifficultyIncrement;
-        this.MinSpeed += DifficultyIncrement;
-        
-        nextDifficulty += DifficultyEveryScore;
-    }
 
     protected override GameObject SpawnObject(GameObject prefab)
     {
-        if (Player.Score > StartSpawningAt)
+        if (Player.Score > StartSpawningAt && Player.Score <= StopSpawningAt && _count < MaxCount)
         {
             var result = base.SpawnObject(prefab);
-            ShouldIncreaseDifficulty();
+            _count++;
+            //ShouldIncreaseDifficulty();
             return result;
         }
         return null;

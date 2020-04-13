@@ -4,21 +4,15 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+[RequireComponent(typeof(AddPoints))]
 public class EnemySpawner : IncrementalSpawner
 {
 
-    public AddPoints AddPoints;
-    // Start is called before the first frame update
-    //public override void Start()
-    //{
-    //    nextDifficulty = DifficultyEveryScore;
-    //    //StartCoroutine(Spawn(EnemyPrefab));
-    //    base.Start();
-    //}
+    private AddPoints AddPoints;
 
     public override void Start()
     {
+        AddPoints = GetComponent<AddPoints>();
         initHoverAmount = HoverAmount;
         base.Start();
     }
@@ -27,7 +21,7 @@ public class EnemySpawner : IncrementalSpawner
     public int Health = 0;
 
     public float HoverAmount = 0.5f;
-    public float HoverIncreaseDelta = 1;
+    //public float HoverIncreaseDelta = 1;
     private float initHoverAmount;
     public override void ResetSpawner()
     {
@@ -35,11 +29,11 @@ public class EnemySpawner : IncrementalSpawner
         base.ResetSpawner();
     }
 
-    protected override void IncreaseDifficulty()
-    {
-        HoverAmount += HoverIncreaseDelta;
-        base.IncreaseDifficulty();
-    }
+    //protected override void IncreaseDifficulty()
+    //{
+    //    HoverAmount += HoverIncreaseDelta;
+    //    base.IncreaseDifficulty();
+    //}
 
     protected override GameObject SpawnObject(GameObject prefab)
     {

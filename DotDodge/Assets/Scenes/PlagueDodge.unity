@@ -1492,7 +1492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -254.90015, y: 49.30005}
+  m_AnchoredPosition: {x: -254.8999, y: 49.30005}
   m_SizeDelta: {x: 444.80005, y: 36.400024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361835644
@@ -1908,7 +1908,7 @@ MonoBehaviour:
   RestartGame: {fileID: 366974611}
   ContinueButton: {fileID: 2003502055}
   myPlacementId: ContinueGame
-  TestMode: 0
+  TestMode: 1
 --- !u!114 &366974614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,7 +1932,8 @@ MonoBehaviour:
   levelfill: {fileID: 361835644}
   text: {fileID: 657097989}
   PointsAvailableText: {fileID: 1913928524}
-  TestSystem: 0
+  TestSystem: 1
+  TestLevel: 100
 --- !u!114 &366974615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6624,7 +6625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.7000732, y: 192.90002}
+  m_AnchoredPosition: {x: -3.7001953, y: 192.90002}
   m_SizeDelta: {x: -97.6, y: -482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1446009339
@@ -8152,13 +8153,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1823230911}
-  - component: {fileID: 1823230910}
   - component: {fileID: 1823230912}
   - component: {fileID: 1823230913}
+  - component: {fileID: 1823230910}
   - component: {fileID: 1823230914}
   - component: {fileID: 1823230915}
   - component: {fileID: 1823230916}
   - component: {fileID: 1823230917}
+  - component: {fileID: 1823230919}
+  - component: {fileID: 1823230918}
+  - component: {fileID: 1823230921}
+  - component: {fileID: 1823230920}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -8188,14 +8193,11 @@ MonoBehaviour:
     type: 3}
   IsGlobal: 0
   StartSpawningAt: 0
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0.25
-  Player: {fileID: 1949095301}
-  AddPoints: {fileID: 1823230912}
+  StopSpawningAt: 35000
+  MaxCount: 2147483647
   Color: {r: 1, g: 1, b: 1, a: 1}
   Health: 0
   HoverAmount: 0.5
-  HoverIncreaseDelta: 0.02
 --- !u!4 &1823230911
 Transform:
   m_ObjectHideFlags: 0
@@ -8260,10 +8262,8 @@ MonoBehaviour:
     type: 3}
   IsGlobal: 0
   StartSpawningAt: 0
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0.25
-  Player: {fileID: 1949095301}
-  Powerup: {fileID: 226643229404061761, guid: 7ce5888a5d25aa945933997a8a8994e6, type: 3}
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
 --- !u!114 &1823230914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8286,14 +8286,11 @@ MonoBehaviour:
     type: 3}
   IsGlobal: 0
   StartSpawningAt: 6000
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0.25
-  Player: {fileID: 1949095301}
-  AddPoints: {fileID: 1823230912}
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
   Color: {r: 1, g: 1, b: 1, a: 1}
   Health: 0
   HoverAmount: 0.5
-  HoverIncreaseDelta: 0.02
 --- !u!114 &1823230915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8316,14 +8313,11 @@ MonoBehaviour:
     type: 3}
   IsGlobal: 0
   StartSpawningAt: 12000
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0.25
-  Player: {fileID: 1949095301}
-  AddPoints: {fileID: 1823230912}
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
   Color: {r: 0.9716981, g: 0.43543077, b: 0.47373566, a: 1}
   Health: 1
   HoverAmount: 0.5
-  HoverIncreaseDelta: 0.02
 --- !u!114 &1823230916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8346,14 +8340,11 @@ MonoBehaviour:
     type: 3}
   IsGlobal: 0
   StartSpawningAt: 20000
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0.25
-  Player: {fileID: 1949095301}
-  AddPoints: {fileID: 1823230912}
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
   Color: {r: 0.9716981, g: 0.43543077, b: 0.47373566, a: 1}
   Health: 1
   HoverAmount: 0.5
-  HoverIncreaseDelta: 0.02
 --- !u!114 &1823230917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8368,22 +8359,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxY: 4.69
   MinY: -4.42
-  MaxSeconds: 30
-  MinSeconds: 10
+  MaxSeconds: 1
+  MinSeconds: 0
   MinSpeed: 2
   MaxSpeed: 6
   ObjectToSpawn: {fileID: 2521087961912598707, guid: 8339748016a03664ea7c96417634e07f,
     type: 3}
   IsGlobal: 0
-  StartSpawningAt: 30000
-  DifficultyEveryScore: 1000
-  DifficultyIncrement: 0
-  Player: {fileID: 1949095301}
-  AddPoints: {fileID: 1823230912}
+  StartSpawningAt: 25000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 1
   Color: {r: 1, g: 1, b: 1, a: 1}
   Health: 10
   HoverAmount: 0
-  HoverIncreaseDelta: 0
+--- !u!114 &1823230918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 1
+  MinSeconds: 0.2
+  MinSpeed: 5
+  MaxSpeed: 7
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: d8669006f9f0e5045828e1212408efae,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 35000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 2
+--- !u!114 &1823230919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 1
+  MinSeconds: 0
+  MinSpeed: 2
+  MaxSpeed: 6
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: 8339748016a03664ea7c96417634e07f,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 50000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 10
+  HoverAmount: 0
+--- !u!114 &1823230920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 1
+  MinSeconds: 0
+  MinSpeed: 2
+  MaxSpeed: 6
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: 8339748016a03664ea7c96417634e07f,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 100000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 1
+  Color: {r: 1, g: 0, b: 0, a: 1}
+  Health: 30
+  HoverAmount: 0
+--- !u!114 &1823230921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 10
+  MinSeconds: 5
+  MinSpeed: 10
+  MaxSpeed: 10
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: d8669006f9f0e5045828e1212408efae,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 75000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 2147483647
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 0
 --- !u!1 &1843185191
 GameObject:
   m_ObjectHideFlags: 0

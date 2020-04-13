@@ -16,11 +16,13 @@ namespace Assets.Scripts
         
         public int PointsAvailable => levelSystem.Level - shopSystem.LevelsUsed;
         public bool TestSystem = true;
+        public int TestLevel = 0;
         void Awake()
         {
             if (TestSystem)
             {
                 levelSystem = new LevelSystem();
+                levelSystem.Level = TestLevel;
                 shopSystem = new ShopSystem();
             }
             else

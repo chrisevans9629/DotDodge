@@ -11,7 +11,6 @@ public class SprayEnemy : MonoBehaviour, IEnemy
 
     Rigidbody2D rb2d;
     public AudioSource HitSound;
-    private Hover hover;
     private List<SpriteRenderer> renders;
 
     public UnityEvent _HitEvent;
@@ -28,10 +27,10 @@ public class SprayEnemy : MonoBehaviour, IEnemy
     public float AngleIncrement;
     private float angle = 0;
     private bool isDead;
+    public float BulletSpeed = 1;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        hover = GetComponentInChildren<Hover>();
         renders = GetComponentsInChildren<SpriteRenderer>().ToList();
         var current = GetComponent<SpriteRenderer>();
         if (current != null)
@@ -77,6 +76,7 @@ public class SprayEnemy : MonoBehaviour, IEnemy
             if (isDead)
                 break;
             var result = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
+            result.Speed = BulletSpeed;
             angle += AngleIncrement;
         }
     }
@@ -107,8 +107,6 @@ public class SprayEnemy : MonoBehaviour, IEnemy
             rb2d.bodyType = RigidbodyType2D.Dynamic;
             rb2d.angularVelocity = 90;
         }
-        if (hover != null)
-            hover.StopHovering();
         isDead = true;
         if (movement != null)
         {
