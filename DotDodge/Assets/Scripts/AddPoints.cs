@@ -12,21 +12,18 @@ namespace Assets.Scripts
     public class AddPoints : MonoBehaviour
     {
         public int PointValue;
-        public PlayerBase Player;
-        public PointEvent GotPoints;
-
-        public void AddPointsToPlayer()
-         {
-            Player.Score += PointValue;
-            GotPoints.Invoke(PointValue);
+        PlayerBase Player;
+        private ShowPoints showPoints;
+        void Start()
+        {
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBase>();
+            showPoints = GameObject.FindObjectOfType<ShowPoints>();
         }
-        //void OnTriggerEnter2D(Collider2D col)
-        //{
-        //    if (col.CompareTag("Enemy"))
-        //    {
-        //        Player.Score += PointValue;
-        //        GotPoints.Invoke(PointValue);
-        //    }
-        //}
+        public void AddPointsToPlayer()
+        {
+            Player.Score += PointValue;
+            showPoints.OnPointScored(PointValue);
+            //GotPoints.Invoke(PointValue);
+        }
     }
 }

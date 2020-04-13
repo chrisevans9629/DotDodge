@@ -5,47 +5,6 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
-    public enum PowerupType
-    {
-        IncreaseFireRate,
-        IncreaseBulletCount,
-        AddShield,
-    }
-
-    public static class PowerupExt
-    {
-        public static Color GetColor(PowerupType type)
-        {
-            switch (type)
-            {
-                case PowerupType.IncreaseFireRate:
-                    return Color.white;
-                case PowerupType.AddShield:
-                    return Color.green;
-                case PowerupType.IncreaseBulletCount:
-                    return Color.red;
-                default:
-                    return Color.white;
-            }
-        }
-
-
-        public static PowerupType GetTypeFromRandom(float value)
-        {
-            if (value >= 0.5f)
-            {
-                return PowerupType.IncreaseFireRate;
-            }
-
-            if (value > 0.2f)
-            {
-                return PowerupType.AddShield;
-            }
-
-            return PowerupType.IncreaseBulletCount;
-        }
-    }
-
     public class Powerup : MoveableObject
     {
         public UnityEvent HitEvent;
@@ -58,11 +17,7 @@ namespace Assets.Scripts
         {
             PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
-            //LeanTween.value(this.gameObject, f => transform.position += new Vector3(0, f, 0), transform.position.y,
-            //    transform.position.y + 1f, 2f);
         }
-
-       
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -97,13 +52,6 @@ namespace Assets.Scripts
             hasBeenUsed = true;
             Impact();
         }
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.gameObject.CompareTag("Player"))
-        //    {
-        //        Impact();
-        //    }
-        //}
 
         private void Impact()
         {

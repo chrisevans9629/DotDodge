@@ -53,17 +53,20 @@ public abstract class PlayerBase : MonoBehaviour
     //    }
     //}
 
-    public void AddHealth()
+    public bool AddHealth()
     {
         if (Health >= MaxHealth)
         {
-            return;
+            return false;
         }
         Health++;
         if (Healthbar != null)
         {
             Healthbar.AddHealth();
+            return true;
         }
+
+        return false;
     }
 
     public void ResetHealth()
@@ -262,12 +265,14 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
-    public void AddBullet()
+    public bool AddBullet()
     {
         if (BulletCount < MaxBullets)
         {
             BulletCount++;
+            return true;
         }
+        return false;
     }
 
     protected virtual void OnScoreIncremented(int e)
