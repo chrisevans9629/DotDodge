@@ -7,12 +7,8 @@ using Random = UnityEngine.Random;
 //[RequireComponent(typeof(AddPoints))]
 public class EnemySpawner : IncrementalSpawner
 {
-
-    //private AddPoints AddPoints;
-
     public override void Start()
     {
-       // AddPoints = GetComponent<AddPoints>();
         initHoverAmount = HoverAmount;
         base.Start();
     }
@@ -21,7 +17,6 @@ public class EnemySpawner : IncrementalSpawner
     public int Health = 0;
 
     public float HoverAmount = 0.5f;
-    //public float HoverIncreaseDelta = 1;
     private float initHoverAmount;
     public override void ResetSpawner()
     {
@@ -29,11 +24,6 @@ public class EnemySpawner : IncrementalSpawner
         base.ResetSpawner();
     }
 
-    //protected override void IncreaseDifficulty()
-    //{
-    //    HoverAmount += HoverIncreaseDelta;
-    //    base.IncreaseDifficulty();
-    //}
     public int PointValue = 100;
     protected override GameObject SpawnObject(GameObject prefab)
     {
@@ -43,7 +33,6 @@ public class EnemySpawner : IncrementalSpawner
         result.transform.rotation = Quaternion.AngleAxis(15, Vector3.forward);
 
         var enemy = (IEnemy)result.GetComponent(typeof(IEnemy)) ?? (IEnemy)result.GetComponentInChildren(typeof(IEnemy));
-        //enemy.HitEvent.AddListener(() => AddPoints?.AddPointsToPlayer());
         enemy.Health = Health;
         enemy.Color = Color;
         var addpoints = result.GetComponent<AddPoints>();
