@@ -4,6 +4,6 @@ namespace Assets.Scripts
 {
     public static class NavigationStack
     {
-        public static List<Navigator> Stack = new List<Navigator>();
+        public static Stack<Navigator> Stack = new Stack<Navigator>();
     }
 }

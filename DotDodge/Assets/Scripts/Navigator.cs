@@ -24,15 +24,17 @@ namespace Assets.Scripts
         public void GoBack()
         {
             From.SetActive(true);
-            NavigationStack.Stack.Remove(this);
+            NavigationStack.Stack.Pop();
             To.SetActive(false);
+            Debug.Log($"Went from {From} to {To}");
         }
 
         public void Navigate()
         {
-            NavigationStack.Stack.Add(this);
+            NavigationStack.Stack.Push(this);
             To.SetActive(true);
             From.SetActive(false);
+            Debug.Log($"Went from {From} to {To}");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Assets.Scripts
 
         private void Clicked()
         {
-            NavigationStack.Stack[0].GoBack();
+            NavigationStack.Stack.Peek().GoBack();
         }
     }
 }
