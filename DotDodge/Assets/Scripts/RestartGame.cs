@@ -88,7 +88,7 @@ public class RestartGame : MonoBehaviour
         PauseUI.SetActive(true);
         if (Player.IsDead)
         {
-            if (gameCount % ShowAdEveryXGame == 0)
+            if (gameCount % ShowAdEveryXGame == 0 && !SettingsManager.instance.settingSystem.HasRemovedAds)
             {
                 if (Advertisement.IsReady("RestartVideo"))
                 {

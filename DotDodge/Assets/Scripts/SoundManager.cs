@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private SettingSystem settingSystem;
     [HideInInspector]
     private List<AudioSource> SoundEffects = new List<AudioSource>();
 
@@ -14,9 +13,9 @@ public class SoundManager : MonoBehaviour
     void Awake()
     {
         SoundManagerInstance = this;
-        settingSystem = SettingSystem.Load();
     }
 
+    private SettingSystem settingSystem => SettingsManager.instance.settingSystem;
     void Start()
     {
         UpdateSound();
