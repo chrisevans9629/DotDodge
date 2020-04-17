@@ -9,7 +9,7 @@ namespace Assets.Scripts
         public bool IsMusicMuted = false;
         public bool IsSoundMuted = false;
 
-        public bool HasRemovedAds = false;
+        //public bool HasRemovedAds = false;
 
         public void Save()
         {

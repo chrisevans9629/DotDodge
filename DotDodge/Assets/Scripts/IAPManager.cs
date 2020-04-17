@@ -1,11 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
-    
+    [HideInInspector]
+    public Button RemoveAdsButton;
     public static IAPManager instance;
 
     private static IStoreController m_StoreController;
@@ -48,8 +51,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         if (String.Equals(args.purchasedProduct.definition.id, removeAds, StringComparison.Ordinal))
         {
-            SettingsManager.instance.settingSystem.HasRemovedAds = true;
-            SettingsManager.instance.settingSystem.Save();
+            HasRemovedAds = true;
+            if (RemoveAdsButton)
+            {
+                RemoveAdsButton.interactable = false;
+            }
         }
         else
         {
@@ -130,6 +136,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         }
     }
 
+    public bool HasRemovedAds;
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
         Debug.Log("OnInitialized: PASS");
@@ -138,11 +145,18 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
 
         var ads = m_StoreController.products.WithID(removeAds);
-        if (ads != null && ads.hasReceipt)
+        //if (ads != null && ads.hasReceipt)
+        //{
+        //    SettingsManager.instance.settingSystem.HasRemovedAds = true;
+        //    SettingsManager.instance.settingSystem.Save();
+        //}
+        var hasBought = ads != null && ads.hasReceipt;
+
+        if (RemoveAdsButton)
         {
-            SettingsManager.instance.settingSystem.HasRemovedAds = true;
-            SettingsManager.instance.settingSystem.Save();
+            RemoveAdsButton.interactable = !hasBought;
         }
+        HasRemovedAds = hasBought;
     }
 
 
