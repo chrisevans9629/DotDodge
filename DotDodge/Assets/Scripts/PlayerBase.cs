@@ -69,12 +69,12 @@ public abstract class PlayerBase : MonoBehaviour
         return false;
     }
 
-    public void ResetHealth()
+    public void ResetHealth(int count)
     {
-        Health = 0;
+        Health = count;
         if (Healthbar != null)
         {
-            Healthbar.ResetHealth();
+            Healthbar.ResetHealth(count);
         }
     }
     public void RemoveHealth()

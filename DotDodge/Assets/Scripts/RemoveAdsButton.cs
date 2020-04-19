@@ -13,6 +13,7 @@ namespace Assets.Scripts
             button = GetComponent<Button>();
             IAPManager.instance.RemoveAdsButton = button;
             button.onClick.AddListener(IAPManager.instance.BuyRemoveAds);
+            IAPManager.instance.SetupRemoveAdsButton();
         }
     }
 }

@@ -64,6 +64,17 @@ namespace Assets.Scripts
                     UpdateText();
                 });
         }
+
+        private void SetupPlayerHealth()
+        {
+            playerBase.ResetHealth(shopSystem.StartingHealth);
+            //for (int i = 0; i < shopSystem.StartingHealth; i++)
+            //{
+            //    playerBase.AddHealth();
+            //}
+            Debug.Log("Player Reset");
+        }
+
         public void SetupPlayerLevel()
         {
             playerBase.BulletCount = shopSystem.BulletCount;
@@ -71,12 +82,7 @@ namespace Assets.Scripts
             playerBase.FireRateSeconds = shopSystem.BulletRate;
             playerBase.MaxBullets = shopSystem.MaxBullets;
             playerBase.MaxHealth = shopSystem.MaxHealth;
-            playerBase.ResetHealth();
-           // playerBase.Health = shopSystem.StartingHealth;
-            for (int i = 0; i < shopSystem.StartingHealth; i++)
-            {
-                playerBase.AddHealth();
-            }
+            SetupPlayerHealth();
         }
 
         public void UpdateText()

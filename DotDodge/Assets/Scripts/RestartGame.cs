@@ -46,8 +46,8 @@ public class RestartGame : MonoBehaviour
             Player.sprite.color = Color.white;
         }
         Player.FireRateSeconds = 1;
-        Player.ResetHealth();
         levelManager.SetupPlayerLevel();
+        //levelManager.SetupPlayerHealth();
         //Player.BulletCount = levelManager.shopSystem.BulletCount;
         //Player.ResetHealth();
         if (Player is Player2D p)

@@ -151,18 +151,21 @@ public class IAPManager : MonoBehaviour, IStoreListener
         m_StoreExtensionProvider = extensions;
 
 
-        var ads = m_StoreController.products.WithID(removeAds);
-        //if (ads != null && ads.hasReceipt)
-        //{
-        //    SettingsManager.instance.settingSystem.HasRemovedAds = true;
-        //    SettingsManager.instance.settingSystem.Save();
-        //}
-        var hasBought = ads != null && ads.hasReceipt;
+        SetupRemoveAdsButton();
+    }
 
+    public void SetupRemoveAdsButton()
+    {
+        if(m_StoreController == null)
+            return;
+        
+        var ads = m_StoreController.products.WithID(removeAds);
+        var hasBought = ads != null && ads.hasReceipt;
         if (RemoveAdsButton)
         {
             RemoveAdsButton.interactable = !hasBought;
         }
+
         HasRemovedAds = hasBought;
     }
 
