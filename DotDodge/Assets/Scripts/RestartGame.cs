@@ -21,7 +21,7 @@ public class RestartGame : MonoBehaviour
     public UnityEvent GameRestarted;
     int gameCount = 1;
     public int ShowAdEveryXGame = 5;
-    public bool CanContinue = true;
+    private bool CanContinue = true;
     private LevelManager levelManager;
     void Start()
     {

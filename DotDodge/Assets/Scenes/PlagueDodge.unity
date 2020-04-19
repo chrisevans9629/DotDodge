@@ -2142,7 +2142,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ShowAdEveryXGame: 5
-  CanContinue: 1
 --- !u!4 &366974612
 Transform:
   m_ObjectHideFlags: 0
@@ -2172,7 +2171,7 @@ MonoBehaviour:
   RestartGame: {fileID: 366974611}
   ContinueButton: {fileID: 2003502055}
   myPlacementId: ContinueGame
-  TestMode: 1
+  TestMode: 0
 --- !u!114 &366974614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,7 +2195,7 @@ MonoBehaviour:
   levelfill: {fileID: 361835644}
   text: {fileID: 657097989}
   PointsAvailableText: {fileID: 1913928524}
-  TestSystem: 1
+  TestSystem: 0
   TestLevel: 100
 --- !u!114 &366974615
 MonoBehaviour:
@@ -3176,7 +3175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &502267199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3200,7 +3199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502267198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 4.36, z: 0}
+  m_LocalPosition: {x: -0.06, y: 4.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10739,6 +10738,17 @@ MonoBehaviour:
       - m_Target: {fileID: 366974614}
         m_MethodName: SetupPlayerLevel
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 502267198}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

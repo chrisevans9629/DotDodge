@@ -6,23 +6,25 @@ namespace Assets.Scripts
     {
         public GameObject HealthItem;
         public Vector3 Offset;
-
+        private int Count = 0;
         public void AddHealth()
         {
-            if (transform.childCount > 0)
+            if (Count > 0)
             {
                 var item = transform.GetChild(transform.childCount - 1);
                 Instantiate(HealthItem, item.position + Offset, Quaternion.identity, transform);
+                Count++;
             }
             else
             {
                 Instantiate(HealthItem, transform.position, Quaternion.identity, transform);
+                Count++;
             }
         }
 
         public void RemoveHealth()
         {
-            if (transform.childCount > 0)
+            if (Count > 0)
             {
                 var item = transform.GetChild(transform.childCount - 1);
                 Destroy(item.gameObject);
@@ -35,6 +37,8 @@ namespace Assets.Scripts
             {
                 Destroy(t.gameObject);
             }
+
+            Count = 0;
         }
     }
 }
