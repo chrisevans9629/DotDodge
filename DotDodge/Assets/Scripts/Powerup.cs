@@ -20,6 +20,7 @@ namespace Assets.Scripts
             _addPoints = GetComponent<AddPoints>();
             PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
             SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
+            SoundManager.SoundManagerInstance.Add(HitSound);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

@@ -62,6 +62,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         }
         else if (showResult == ShowResult.Failed)
         {
+            Popup.Instance.Alert("Uh oh!","The ad did not finish due to an error. No Worries! Try again later.");
             Debug.LogWarning("The ad did not finish due to an error.");
         }
     }

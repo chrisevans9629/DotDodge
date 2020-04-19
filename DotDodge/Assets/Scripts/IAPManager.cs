@@ -56,9 +56,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
             {
                 RemoveAdsButton.interactable = false;
             }
+            Popup.Instance.Alert("Congrats!","Ads every x number of games has been removed.  Thank you for your support!  You can still watch an ad to continue a game if you please.");
         }
         else
         {
+            Popup.Instance.Alert("Oh no!","Purchase Failed");
             Debug.Log("Purchase Failed");
         }
         return PurchaseProcessingResult.Complete;
@@ -98,17 +100,22 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Product product = m_StoreController.products.WithID(productId);
             if (product != null && product.availableToPurchase)
             {
-                Debug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
+                Debug.Log($"Purchasing product asychronously: '{product.definition.id}'");
                 m_StoreController.InitiatePurchase(product);
             }
             else
             {
-                Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                var msg =
+                    "BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase";
+                Debug.Log(msg);
+                Popup.Instance.Alert("Error", msg);
             }
         }
         else
         {
-            Debug.Log("BuyProductID FAIL. Not initialized.");
+            var msg = "BuyProductID FAIL. Not initialized.";
+            Debug.Log(msg);
+            Popup.Instance.Alert("Error", msg);
         }
     }
 

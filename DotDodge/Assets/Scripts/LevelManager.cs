@@ -50,12 +50,19 @@ namespace Assets.Scripts
 
         public void ResetProgress()
         {
-            levelSystem = new LevelSystem();
-            levelSystem.Save();
-            shopSystem = new ShopSystem();
-            shopSystem.Save();
-            UpdateUi();
-            UpdateText();
+            Popup.Instance.Confirm("Warning!","This will reset all of your levels. Are you sure you want to do that?",
+                b =>
+                {
+                    if (!b)
+                     return;
+
+                    levelSystem = new LevelSystem();
+                    levelSystem.Save();
+                    shopSystem = new ShopSystem();
+                    shopSystem.Save();
+                    UpdateUi();
+                    UpdateText();
+                });
         }
         public void SetupPlayerLevel()
         {
