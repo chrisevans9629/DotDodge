@@ -132,24 +132,9 @@ public abstract class PlayerBase : MonoBehaviour
             return;
         if (!other.CompareTag("Bullet") && !other.CompareTag("Powerup") && !IsDead)
         {
-            if (this.Health <= 0)
+            if (this.Health <= 0 || other.CompareTag("Wall"))
             {
-                IsDead = true;
-                if (!IsDead)
-                    return;
-                UpdateHighscore();
-                if (sprite != null)
-                {
-                    LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f);
-                    Time.timeScale = 0.5f;
-                    StartCoroutine(DeathAnimation());
-                  
-                }
-                else
-                {
-                    PlayerDied.Invoke();
-                }
-                PlayerDying.Invoke();
+                Dead();
             }
             else
             {
@@ -166,6 +151,24 @@ public abstract class PlayerBase : MonoBehaviour
                 StressReceiver.InduceStress(0.5f);
             }
         }
+    }
+
+    private void Dead()
+    {
+        IsDead = true;
+        UpdateHighscore();
+        if (sprite != null)
+        {
+            LeanTween.value(this.gameObject, color => sprite.color = color, sprite.color, Color.green, 1f);
+            Time.timeScale = 0.5f;
+            StartCoroutine(DeathAnimation());
+        }
+        else
+        {
+            PlayerDied.Invoke();
+        }
+
+        PlayerDying.Invoke();
     }
 
     IEnumerator DeathAnimation()

@@ -12,6 +12,7 @@ TagManager:
   - PointsText
   - HighscoreText
   - GameManager
+  - Wall
   layers:
   - Default
   - TransparentFX
