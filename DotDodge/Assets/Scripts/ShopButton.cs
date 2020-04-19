@@ -45,18 +45,11 @@ public class ShopButton : MonoBehaviour
     }
     private void UpdateButton()
     {
-        if (LevelManager.PointsAvailable - Cost >= 0)
-        {
-            button.interactable = true;
-        }
-        else
-        {
-            button.interactable = false;
-        }
-
+        bool canBuy = true;
         if (Action == ShopAction.BulletCount)
         {
             cntText.text = $"Bullets: {LevelManager.shopSystem.BulletCount}";
+            canBuy = LevelManager.shopSystem.BulletCount < LevelManager.shopSystem.MaxBullets;
         }
         else if (Action == ShopAction.BulletSpeed)
         {
@@ -77,11 +70,16 @@ public class ShopButton : MonoBehaviour
         else if (Action == ShopAction.StartHealth)
         {
             cntText.text = $"Start Health: {LevelManager.shopSystem.StartingHealth}";
+            canBuy = LevelManager.shopSystem.StartingHealth < LevelManager.shopSystem.MaxHealth;
         }
         else
         {
             throw new NotImplementedException();
         }
+
+
+        button.interactable = LevelManager.PointsAvailable - Cost >= 0 && canBuy;
+
 
         costText.text = $"Cost: {Cost}";
     }

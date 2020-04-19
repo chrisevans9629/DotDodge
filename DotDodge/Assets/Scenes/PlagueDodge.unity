@@ -2197,7 +2197,7 @@ MonoBehaviour:
   text: {fileID: 657097989}
   PointsAvailableText: {fileID: 1913928524}
   TestSystem: 1
-  TestLevel: 20
+  TestLevel: 100
 --- !u!114 &366974615
 MonoBehaviour:
   m_ObjectHideFlags: 0
