@@ -58,7 +58,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             }
             Popup.Instance.Alert("Congrats!","Ads every x number of games has been removed.  Thank you for your support!  You can still watch an ad to continue a game if you please.");
         }
-        else
+        else 
         {
             Popup.Instance.Alert("Oh no!","Purchase Failed");
             Debug.Log("Purchase Failed");

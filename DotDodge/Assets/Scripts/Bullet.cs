@@ -40,7 +40,6 @@ public class Bullet : MonoBehaviour
         if (!ShouldUseUp)
         {
             transform.position += transform.right * Speed * Time.deltaTime;
-
         }
         else
         {
