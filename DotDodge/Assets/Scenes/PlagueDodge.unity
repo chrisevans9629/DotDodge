@@ -2170,7 +2170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RestartGame: {fileID: 366974611}
   ContinueButton: {fileID: 2003502055}
-  myPlacementId: ContinueGame
   TestMode: 0
 --- !u!114 &366974614
 MonoBehaviour:
@@ -2195,7 +2194,7 @@ MonoBehaviour:
   levelfill: {fileID: 361835644}
   text: {fileID: 657097989}
   PointsAvailableText: {fileID: 1913928524}
-  TestSystem: 0
+  TestSystem: 1
   TestLevel: 100
 --- !u!114 &366974615
 MonoBehaviour:
@@ -10876,6 +10875,9 @@ GameObject:
   - component: {fileID: 1823230918}
   - component: {fileID: 1823230921}
   - component: {fileID: 1823230920}
+  - component: {fileID: 1823230922}
+  - component: {fileID: 1823230912}
+  - component: {fileID: 1823230923}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -10925,6 +10927,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823230912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 0
+  MinY: 0
+  MaxSeconds: 0.1
+  MinSeconds: 0.1
+  MinSpeed: 4
+  MaxSpeed: 4
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: d8669006f9f0e5045828e1212408efae,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 22000
+  StopSpawningAt: 200000
+  MaxCount: 10
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 0.5
+  PointValue: 100
 --- !u!114 &1823230913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11058,7 +11088,7 @@ MonoBehaviour:
   StopSpawningAt: 3.4028235e+38
   MaxCount: 1
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Health: 10
+  Health: 30
   HoverAmount: 0
   PointValue: 500
 --- !u!114 &1823230918
@@ -11114,7 +11144,7 @@ MonoBehaviour:
   StopSpawningAt: 3.4028235e+38
   MaxCount: 2
   Color: {r: 1, g: 1, b: 1, a: 1}
-  Health: 10
+  Health: 50
   HoverAmount: 0
   PointValue: 500
 --- !u!114 &1823230920
@@ -11142,7 +11172,7 @@ MonoBehaviour:
   StopSpawningAt: 3.4028235e+38
   MaxCount: 1
   Color: {r: 1, g: 0, b: 0, a: 1}
-  Health: 30
+  Health: 80
   HoverAmount: 0
   PointValue: 5000
 --- !u!114 &1823230921
@@ -11173,6 +11203,62 @@ MonoBehaviour:
   Health: 0
   HoverAmount: 0
   PointValue: 200
+--- !u!114 &1823230922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 1
+  MinSeconds: 0.2
+  MinSpeed: 4
+  MaxSpeed: 7
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: d8669006f9f0e5045828e1212408efae,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 10000
+  StopSpawningAt: 200000
+  MaxCount: 2147483647
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  HoverAmount: 0.5
+  PointValue: 100
+--- !u!114 &1823230923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823230909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a7964f1301ed4aa91dd16248f5a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxY: 4.69
+  MinY: -4.42
+  MaxSeconds: 1
+  MinSeconds: 0
+  MinSpeed: 2
+  MaxSpeed: 6
+  ObjectToSpawn: {fileID: 2521087961912598707, guid: 8339748016a03664ea7c96417634e07f,
+    type: 3}
+  IsGlobal: 0
+  StartSpawningAt: 200000
+  StopSpawningAt: 3.4028235e+38
+  MaxCount: 1
+  Color: {r: 1, g: 0, b: 0, a: 1}
+  Health: 200
+  HoverAmount: 0
+  PointValue: 5000
 --- !u!1 &1841154224
 GameObject:
   m_ObjectHideFlags: 0
@@ -12155,39 +12241,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 366974611}
         m_MethodName: Restart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1823230913}
-        m_MethodName: ResetSpawner
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1823230910}
-        m_MethodName: ResetSpawner
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1926407990}
-        m_MethodName: ResetSpawner
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

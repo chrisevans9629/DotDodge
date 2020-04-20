@@ -8,13 +8,11 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     public RestartGame RestartGame;
     public Button ContinueButton;
-    public string myPlacementId = "ContinueGame";
     public bool TestMode = true;
+    private string myPlacementId = "ContinueGame";
 
     void Start()
     {
-        //myButton = GetComponent<Button>();
-
         // Set interactivity to be dependent on the Placement’s status:
         ContinueButton.interactable = Advertisement.IsReady(myPlacementId);
 

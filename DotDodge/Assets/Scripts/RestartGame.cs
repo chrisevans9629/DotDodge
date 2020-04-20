@@ -59,6 +59,9 @@ public class RestartGame : MonoBehaviour
         {
             Destroy(o);
         }
+
+       
+
         foreach (Transform children in Spawner.transform)
         {
             Destroy(children.gameObject);
@@ -127,6 +130,11 @@ public class RestartGame : MonoBehaviour
     {
         gameCount++;
         Player.Score = 0;
+        var spawners = Spawner.GetComponents<SpawnerBase>();
+        foreach (var item in spawners)
+        {
+            item.ResetSpawner();
+        }
         Continue();
         CanContinue = true;
     }
