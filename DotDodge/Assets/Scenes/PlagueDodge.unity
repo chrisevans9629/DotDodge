@@ -2194,7 +2194,7 @@ MonoBehaviour:
   levelfill: {fileID: 361835644}
   text: {fileID: 657097989}
   PointsAvailableText: {fileID: 1913928524}
-  TestSystem: 1
+  TestSystem: 0
   TestLevel: 100
 --- !u!114 &366974615
 MonoBehaviour:
