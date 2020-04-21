@@ -23,6 +23,7 @@ public class EnemySpawner : IncrementalSpawner
         HoverAmount = initHoverAmount;
         base.ResetSpawner();
     }
+    public static float SpeedRatio = 0.0001f;
 
     public int PointValue = 100;
     protected override GameObject SpawnObject(GameObject prefab)
@@ -33,6 +34,10 @@ public class EnemySpawner : IncrementalSpawner
         result.transform.rotation = Quaternion.AngleAxis(15, Vector3.forward);
 
         var enemy = (IEnemy)result.GetComponent(typeof(IEnemy)) ?? (IEnemy)result.GetComponentInChildren(typeof(IEnemy));
+        if (enemy is ISpeed s)
+        {
+            s.SpeedValue += SpeedRatio * Player.Score;
+        }
         enemy.Health = Health;
         enemy.Color = Color;
         var addpoints = result.GetComponent<AddPoints>();

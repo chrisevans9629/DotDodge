@@ -4,10 +4,9 @@ public class IncrementalSpawner : SpawnerBase
 {
     public float StartSpawningAt = 0;
     public float StopSpawningAt = float.MaxValue;
-
     public int MaxCount = int.MaxValue;
     int _count = 0;
-    PlayerBase Player;
+    protected PlayerBase Player;
 
     public override void Start()
     {
