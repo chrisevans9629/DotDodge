@@ -68,6 +68,7 @@ public class Enemy : MoveableObject, IEnemy
         }
     }
 
+    private bool isDead;
     private void Impact()
     {
         HitEvent.Invoke();
@@ -80,7 +81,8 @@ public class Enemy : MoveableObject, IEnemy
             Health--;
             return;
         }
-
+        if(isDead)
+            return;
         if (rb != null)
             rb.isKinematic = false;
         if (rb2d != null)
@@ -90,6 +92,7 @@ public class Enemy : MoveableObject, IEnemy
         }
         hover.StopHovering();
         _addPoints.AddPointsToPlayer();
+        isDead = true;
     }
 
 }

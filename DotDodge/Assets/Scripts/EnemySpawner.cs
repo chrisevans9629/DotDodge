@@ -23,7 +23,7 @@ public class EnemySpawner : IncrementalSpawner
         HoverAmount = initHoverAmount;
         base.ResetSpawner();
     }
-    public static float SpeedRatio = 0.0001f;
+    public static float SpeedRatio = 0.00005f;
 
     public int PointValue = 100;
     protected override GameObject SpawnObject(GameObject prefab)
