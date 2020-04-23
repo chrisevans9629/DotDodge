@@ -9,17 +9,17 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     private Action ContinueAction;
 
-    public void SetContinueAction(Action action)
+    public static void SetContinueAction(Action action)
     {
-        if(ContinueAction != null)
-            Debug.Log("Updating action",this);
-        ContinueAction = action;
+        if(Instance.ContinueAction != null)
+            Debug.Log("Updating action", Instance);
+        Instance.ContinueAction = action;
         Debug.Log("Continue action changed");
     }
 
     public bool TestMode = true;
     private static string continueGameId = "ContinueGame";
-    public static AdManager Instance;
+    private static AdManager Instance;
     void Awake()
     {
         if (Instance != null)

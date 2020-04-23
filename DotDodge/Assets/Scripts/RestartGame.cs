@@ -28,8 +28,7 @@ public class RestartGame : MonoBehaviour
 
     void Start()
     {
-        AdManager.Instance.SetContinueAction(Continue);
-
+        AdManager.SetContinueAction(Continue);
         AdManager.SetupButton(ContinueButton);
 
         //AdManager.Instance.ContinueButton = ContinueButton;
