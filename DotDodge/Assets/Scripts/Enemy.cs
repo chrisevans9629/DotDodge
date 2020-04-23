@@ -72,9 +72,7 @@ public class Enemy : MoveableObject, IEnemy
     private void Impact()
     {
         HitEvent.Invoke();
-        if (HitSound != null)
-            HitSound?.PlayOneShot(HitSound?.clip);
-        ParticleSystem.Play();
+      
 
         if (Health > 0)
         {
@@ -83,6 +81,9 @@ public class Enemy : MoveableObject, IEnemy
         }
         if(isDead)
             return;
+        if (HitSound != null)
+            HitSound?.PlayOneShot(HitSound?.clip);
+        ParticleSystem.Play();
         if (rb != null)
             rb.isKinematic = false;
         if (rb2d != null)

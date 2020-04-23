@@ -23,15 +23,37 @@ public class RestartGame : MonoBehaviour
     public int ShowAdEveryXGame = 5;
     private bool CanContinue = true;
     private LevelManager levelManager;
+
+
+
     void Start()
     {
+        AdManager.Instance.ContinueAction = Continue;
+
+        AdManager.SetupButton(ContinueButton);
+
+        //AdManager.Instance.ContinueButton = ContinueButton;
         levelManager = GetComponent<LevelManager>();
         //Advertisement.Initialize("3532261", TestMode);
         playerStart = Player.transform.position;
+        Debug.Log("Restart game loaded");
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("destroying", this);
     }
 
     public void Continue()
     {
+        if (gameObject == null)
+        {
+            Debug.LogError("gameObject was null");
+        }
+        else
+        {
+            Debug.Log("Continue...");
+        }
         CanContinue = false;
         Time.timeScale = 1;
         LeanTween.value(this.gameObject, v => Player.transform.position = v, Player.transform.position, playerStart, 0.5f)
@@ -47,9 +69,7 @@ public class RestartGame : MonoBehaviour
         }
         Player.FireRateSeconds = 1;
         levelManager.SetupPlayerLevel();
-        //levelManager.SetupPlayerHealth();
-        //Player.BulletCount = levelManager.shopSystem.BulletCount;
-        //Player.ResetHealth();
+
         if (Player is Player2D p)
         {
             p.rb.velocity = Vector2.zero;
@@ -60,12 +80,11 @@ public class RestartGame : MonoBehaviour
             Destroy(o);
         }
 
-       
+
 
         foreach (Transform children in Spawner.transform)
         {
             Destroy(children.gameObject);
-            //Destroy(children);
         }
 
         foreach (var o in GameObject.FindGameObjectsWithTag("PointsText"))
@@ -73,7 +92,6 @@ public class RestartGame : MonoBehaviour
             Destroy(o);
         }
 
-        //MainMenu.text.gameObject.SetActive(false);
         MainMenu.UpdateHighScoreText();
         GameRestarted.Invoke();
     }
@@ -114,7 +132,7 @@ public class RestartGame : MonoBehaviour
             ContinueButton.gameObject.SetActive(false);
         }
         MainMenu.UpdateHighScoreText();
-     
+
         //MainMenu.text.gameObject.SetActive(true);
     }
 
@@ -126,6 +144,10 @@ public class RestartGame : MonoBehaviour
         }
     }
 
+    //void Update()
+    //{
+    //    Debug.Log(this);
+    //}
     public void Restart()
     {
         gameCount++;
@@ -143,5 +165,5 @@ public class RestartGame : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-   
+
 }

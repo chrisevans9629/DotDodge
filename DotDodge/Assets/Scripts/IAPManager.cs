@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -31,7 +32,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
      
     }
 
-
+    //public void ReloadScene()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //}
     private bool IsInitialized()
     {
         return m_StoreController != null && m_StoreExtensionProvider != null;

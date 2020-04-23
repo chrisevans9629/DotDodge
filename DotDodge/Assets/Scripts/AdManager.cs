@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
@@ -6,40 +7,53 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 {
     private string gameId = "3532261";
 
-    public RestartGame RestartGame;
-    public Button ContinueButton;
-    public bool TestMode = true;
-    private string myPlacementId = "ContinueGame";
+    public Action ContinueAction;
+ 
 
+    public bool TestMode = true;
+    private static string continueGameId = "ContinueGame";
+    public static AdManager Instance;
+    void Awake()
+    {
+        if(Instance != null)
+            Destroy(this);
+        DontDestroyOnLoad(this);
+        Instance = this;
+    }
     void Start()
     {
+        // Initialize the Ads listener and service:
+        Advertisement.AddListener(this);
+        Advertisement.Initialize(gameId, TestMode);
+    }
+
+    public static void SetupButton(Button ContinueButton)
+    {
+        if(ContinueButton == null)
+            return;
         // Set interactivity to be dependent on the Placement’s status:
-        ContinueButton.interactable = Advertisement.IsReady(myPlacementId);
+        ContinueButton.interactable = Advertisement.IsReady(continueGameId);
 
         // Map the ShowRewardedVideo function to the button’s click listener:
         if (ContinueButton)
         {
             ContinueButton.onClick.AddListener(ShowRewardedVideo);
         }
-
-        // Initialize the Ads listener and service:
-        Advertisement.AddListener(this);
-        Advertisement.Initialize(gameId, TestMode);
     }
 
     // Implement a function for showing a rewarded video ad:
-    void ShowRewardedVideo()
+    static void ShowRewardedVideo()
     {
-        Advertisement.Show(myPlacementId);
+        Advertisement.Show(continueGameId);
     }
 
     // Implement IUnityAdsListener interface methods:
     public void OnUnityAdsReady(string placementId)
     {
         // If the ready Placement is rewarded, activate the button: 
-        if (placementId == myPlacementId)
+        if (placementId == continueGameId)
         {
-            ContinueButton.interactable = true;
+            //ContinueButton.interactable = true;
         }
     }
 
@@ -48,9 +62,14 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
-            if (placementId == myPlacementId)
+            if (placementId == continueGameId)
             {
-                RestartGame.Continue();
+                if (ContinueAction == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                ContinueAction.Invoke();
+                //RestartGame.Continue();
             }
             // Reward the user for watching the ad to completion.
         }
@@ -60,7 +79,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         }
         else if (showResult == ShowResult.Failed)
         {
-            Popup.Instance.Alert("Uh oh!","The ad did not finish due to an error. No Worries! Try again later.");
+            Popup.Instance.Alert("Uh oh!", "The ad did not finish due to an error. No Worries! Try again later.");
             Debug.LogWarning("The ad did not finish due to an error.");
         }
     }

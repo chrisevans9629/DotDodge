@@ -10,6 +10,11 @@ namespace Assets.Scripts
 
         void Start()
         {
+            if (IAPManager.instance == null)
+            {
+                Debug.LogWarning("IAP Manager is null");
+                return;
+            }
             button = GetComponent<Button>();
             button.interactable = false;
             IAPManager.instance.RemoveAdsButton = button;
