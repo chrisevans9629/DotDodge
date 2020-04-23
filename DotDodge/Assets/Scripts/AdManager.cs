@@ -40,6 +40,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         Advertisement.Initialize(gameId, TestMode);
     }
 
+    private Action ButtonInteractable;
     public static void SetupButton(Button ContinueButton)
     {
         if(ContinueButton == null)
@@ -47,6 +48,8 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         // Set interactivity to be dependent on the Placement’s status:
         ContinueButton.interactable = Advertisement.IsReady(continueGameId);
 
+        Instance.ButtonInteractable = () => ContinueButton.interactable = true;
+        //Instance.ButtonInteractable = button => button.interactable = Advertisement.IsReady(continueGameId);
         // Map the ShowRewardedVideo function to the button’s click listener:
         if (ContinueButton)
         {
@@ -68,6 +71,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         // If the ready Placement is rewarded, activate the button: 
         if (placementId == continueGameId)
         {
+            ButtonInteractable?.Invoke();
             //ContinueButton.interactable = true;
         }
     }
