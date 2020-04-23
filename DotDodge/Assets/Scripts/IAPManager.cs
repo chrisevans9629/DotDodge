@@ -92,7 +92,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     private void TestSingleton()
     {
-        if (instance != null) { Destroy(gameObject); return; }
+        if (instance != null)
+        {
+            Destroy(gameObject); 
+            return;
+        }
         instance = this;
         DontDestroyOnLoad(gameObject);
     }

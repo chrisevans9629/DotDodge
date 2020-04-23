@@ -7,23 +7,36 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 {
     private string gameId = "3532261";
 
-    public Action ContinueAction;
- 
+    private Action ContinueAction;
+
+    public void SetContinueAction(Action action)
+    {
+        if(ContinueAction != null)
+            Debug.Log("Updating action",this);
+        ContinueAction = action;
+        Debug.Log("Continue action changed");
+    }
 
     public bool TestMode = true;
     private static string continueGameId = "ContinueGame";
     public static AdManager Instance;
     void Awake()
     {
-        if(Instance != null)
-            Destroy(this);
-        DontDestroyOnLoad(this);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
         Instance = this;
     }
     void Start()
     {
+        if(Advertisement.isInitialized)
+            return;
         // Initialize the Ads listener and service:
         Advertisement.AddListener(this);
+
         Advertisement.Initialize(gameId, TestMode);
     }
 
@@ -39,12 +52,14 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         {
             ContinueButton.onClick.AddListener(ShowRewardedVideo);
         }
+        
     }
 
     // Implement a function for showing a rewarded video ad:
     static void ShowRewardedVideo()
     {
         Advertisement.Show(continueGameId);
+        Debug.Log("video showed");
     }
 
     // Implement IUnityAdsListener interface methods:
