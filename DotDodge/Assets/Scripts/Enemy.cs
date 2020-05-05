@@ -39,7 +39,8 @@ public class Enemy : MoveableObject, IEnemy
     {
         _addPoints = GetComponent<AddPoints>();
         var s = SoundManager.SoundManagerInstance;
-        s.Add(HitSound);
+        if (s != null)
+            s.Add(HitSound);
         hover = GetComponentInChildren<Hover>();
         rb = GetComponent<Rigidbody>();
         renders = GetComponentsInChildren<SpriteRenderer>().ToList();
@@ -72,14 +73,14 @@ public class Enemy : MoveableObject, IEnemy
     private void Impact()
     {
         HitEvent.Invoke();
-      
+
 
         if (Health > 0)
         {
             Health--;
             return;
         }
-        if(isDead)
+        if (isDead)
             return;
         if (HitSound != null)
             HitSound?.PlayOneShot(HitSound?.clip);
@@ -91,8 +92,8 @@ public class Enemy : MoveableObject, IEnemy
             rb2d.bodyType = RigidbodyType2D.Dynamic;
             rb2d.angularVelocity = 90;
         }
-        hover.StopHovering();
-        _addPoints.AddPointsToPlayer();
+        hover?.StopHovering();
+        _addPoints?.AddPointsToPlayer();
         isDead = true;
     }
 

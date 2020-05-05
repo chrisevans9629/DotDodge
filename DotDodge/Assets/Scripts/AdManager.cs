@@ -11,6 +11,8 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     public static void SetContinueAction(Action action)
     {
+        if (Instance == null)
+            return;
         if(Instance.ContinueAction != null)
             Debug.Log("Updating action", Instance);
         Instance.ContinueAction = action;

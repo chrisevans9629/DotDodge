@@ -67,7 +67,8 @@ public class RestartGame : MonoBehaviour
             Player.sprite.color = Color.white;
         }
         Player.FireRateSeconds = 1;
-        levelManager.SetupPlayerLevel();
+        if (levelManager)
+            levelManager.SetupPlayerLevel();
 
         if (Player is Player2D p)
         {
@@ -115,12 +116,13 @@ public class RestartGame : MonoBehaviour
                     Advertisement.Show("RestartVideo");
                 }
             }
-            ResumeButton.SetActive(false);
-            if (CanContinue)
+            if (ResumeButton)
+                ResumeButton?.SetActive(false);
+            if (CanContinue && ContinueButton)
             {
                 ContinueButton.gameObject.SetActive(true);
             }
-            else
+            else if (ContinueButton)
             {
                 ContinueButton.gameObject.SetActive(false);
             }

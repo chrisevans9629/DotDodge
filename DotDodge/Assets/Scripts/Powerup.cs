@@ -15,12 +15,28 @@ namespace Assets.Scripts
         public SpriteRenderer SpriteRenderer;
         public float DeathDelay = 1;
         public PowerupType PowerupType;
+        public bool RandomPowerupType = true;
+        private MeshRenderer renderer;
         void Start()
         {
+
             _addPoints = GetComponent<AddPoints>();
-            PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f,1f));
-            SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
-            SoundManager.SoundManagerInstance.Add(HitSound);
+            if (RandomPowerupType)
+            {
+                PowerupType = PowerupExt.GetTypeFromRandom(Random.Range(0f, 1f));
+                if (SpriteRenderer)
+                {
+                    SpriteRenderer.color = PowerupExt.GetColor(PowerupType);
+                }
+                else
+                {
+                    renderer = GetComponent<MeshRenderer>();
+                    renderer.material.color = PowerupExt.GetColor(PowerupType);
+                }
+            }
+               
+            if (SoundManager.SoundManagerInstance)
+                SoundManager.SoundManagerInstance.Add(HitSound);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +51,7 @@ namespace Assets.Scripts
         private bool hasBeenUsed = false;
         private void AddFireRate(GameObject collision)
         {
-            if(hasBeenUsed)
+            if (hasBeenUsed)
                 return;
             if (!collision.gameObject.CompareTag("Player")) return;
             var player = collision.gameObject.GetComponent<PlayerBase>();
@@ -46,11 +62,11 @@ namespace Assets.Scripts
                     player.FireRateSeconds *= PowerupValue;
                     break;
                 case PowerupType.IncreaseBulletCount:
-                    if(!player.AddBullet())
+                    if (!player.AddBullet())
                         _addPoints.AddPointsToPlayer();
                     break;
                 case PowerupType.AddShield:
-                    if(!player.AddHealth())
+                    if (!player.AddHealth())
                         _addPoints.AddPointsToPlayer();
                     break;
             }

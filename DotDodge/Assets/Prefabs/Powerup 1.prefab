@@ -114,3 +114,5 @@ MonoBehaviour:
   PowerupValue: 0.9
   SpriteRenderer: {fileID: 0}
   DeathDelay: 0
+  PowerupType: 0
+  RandomPowerupType: 0
